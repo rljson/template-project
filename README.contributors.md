@@ -1,27 +1,18 @@
 # Contributors
 
-## Important
+## Issues
 
-⚠️ IMPORTANT: On `Windows, please checkout the repo on drive C`.
-There is a bug in the Vscode vitest extension v 1.14.4, making debugging tests
-not work. <https://github.com/vitest-dev/vscode/issues/548>
-Please check from time to time, if the issue is fixed and remove this hint.
+Check out [./README.trouble.md](./README.trouble.md)
 
-## Report issues
-
-Visit <https://github.com/rljson/validate/issues>
-
-Check if there is already an issue for your problem
-
-If no, report the issue
+Report issues as <https://github.com/rljson/template/issues>
 
 ## Check out
 
 ```bash
 mkdir rljson
 cd rljson
-git clone https://github.com/rljson/validate.git
-cd validate
+git clone https://github.com/rljson/template.git
+cd template
 ```
 
 ## Install dependencies
@@ -44,86 +35,69 @@ npm run build
 
 ## Publish the package
 
-Open `package.json`.
+1. Open `package.json`.
+2. Increase the `version` number.
+3. Compile TypeScript:
 
-Increase `version`.
+   ```bash
+   npm run build
+   ```
 
-Compile typescript:
+4. Perform a dry-run of the publish process:
 
-```bash
-npm run build
-```
+   ```bash
+   npm publish --access=public --dry-run
+   ```
 
-Make publish dry-run
+5. Review the uploaded changes.
+6. Publish the package:
 
-```bash
-npm publish --access=public --dry-run
-```
-
-Check the changes to uploaded
-
-Publish the package
-
-```bash
-npm publish --access=public
-```
+   ```bash
+   npm publish --access=public
+   ```
 
 ## Architecture
 
-Reade [README.architecture.md](./README.architecture.md) to get an overview
-of the package's architecture.
+Read [README.architecture.md](./README.architecture.md) to get an overview of
+the package architecture.
 
-## Install Vscode extensions
+## Install VS Code extensions
 
-Open this project in `vscode`.
+1. Open this project in `VS Code`.
+2. Press `Cmd+Shift+P`.
+3. Type `Extensions: Show Recommended Extensions` and press `Enter`.
+4. The recommended extensions will be displayed.
+5. Make sure all recommended extensions are installed.
 
-Press `Cmd+Shift+P`.
+## Uninstall all test extensions (e.g., Jest or Jasmine)
 
-Type `Extensions: Show Recommended Extensions` and press `Enter`.
-
-The recommended extensions will be shown.
-
-Make sure, all recommended extensions are shown.
-
-## Uninstall all test extensions, e.g. Jest or Jasmine
-
-Jest or Jasmine extensions conflict with the `Vitest` extension used for this
+Jest or Jasmine extensions conflict with the `Vitest` extension used in this
 project.
 
-Uninstall them, if you have installed them.
+Uninstall them if they are installed.
 
 ## Debug tests
 
-In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
-
-At the `top`, click on the `refresh` icon to show update the tests.
-
-Open a test file (`*.spec.ts`)
-
-Set a breakpoint.
-
-Press `alt` and click on the play button left beside the test.
+1. In `VS Code`, click on the `Test Tube` icon in the left sidebar to open the
+   `Test Explorer`.
+2. At the top, click the `Refresh` icon to update the test list.
+3. Open a test file (`*.spec.ts`).
+4. Set a breakpoint.
+5. Press `Alt` and click the play button next to the test.
 
 Execution should stop at the breakpoint.
 
 ## Update goldens
 
-In various tests we are creating golden files, that are reference files that
-are compared against the files created in the tests.
+In various tests, we create golden files, which serve as reference files that
+are compared against test-generated files.
 
-If change is detected, the fest fail.
+If a change is detected, the test fails.
 
-An example is `test/goldens/README.md` which is compared against
-`dist/README.md`.
+To update the golden files, run:
 
-If the changes are desired, update the golden files:
+```bash
+npm run updateGoldens
+```
 
-Open `update-goldens.ts`
-
-Set `export const updateGoldens` to `true`
-
-Run tests again.
-
-Set `export const updateGoldens` to `false`.
-
-Run tests again.
+Then, check the changes in the `test/goldens` folder.

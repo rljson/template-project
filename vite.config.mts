@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
+
 export default defineConfig({
   plugins: [dts({ include: ['src/*'] })],
 
@@ -16,7 +17,12 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['@rljson/format', '@rljson/json'],
+      external: [
+        '@rljson/format',
+        '@rljson/json',
+        '@rljson/hash',
+        // Add all peer depencies from package.json here
+      ],
       output: {
         globals: {},
       },
