@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/rljson/template.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/template.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
