@@ -8,8 +8,8 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'node',
-      setupFiles: ['./test/test-setup.ts'],
-      include: ['**/test/*.spec.ts'],
+      setupFiles: ['./test/setup/test-setup.ts'],
+      include: ['**/test/**/*.spec.ts'],
 
       reporters: ['default'],
       coverage: {

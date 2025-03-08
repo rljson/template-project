@@ -1,4 +1,4 @@
-# @rljson/
+# @rljson/template
 
 Todo: Add description here
 
