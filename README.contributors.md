@@ -15,22 +15,36 @@ git clone https://github.com/rljson/template.git
 cd template
 ```
 
+## Install pnpm
+
+Windows:
+
+```bash
+corepack enable pnpm
+```
+
+Mac:
+
+```bash
+sudo corepack enable pnpm
+```
+
 ## Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## Run the tests
 
 ```bash
-npm run test
+pnpm run test
 ```
 
 ## Build the package
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Publish the package
@@ -40,20 +54,20 @@ npm run build
 3. Compile TypeScript:
 
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 4. Perform a dry-run of the publish process:
 
    ```bash
-   npm publish --access=public --dry-run
+   pnpm publish --access=public --dry-run
    ```
 
 5. Review the uploaded changes.
 6. Publish the package:
 
    ```bash
-   npm publish --access=public
+   pnpm publish --access=public
    ```
 
 ## Architecture
@@ -97,7 +111,7 @@ If a change is detected, the test fails.
 To update the golden files, run:
 
 ```bash
-npm run updateGoldens
+pnpm run updateGoldens
 ```
 
 Then, check the changes in the `test/goldens` folder.
