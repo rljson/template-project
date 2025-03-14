@@ -43,8 +43,8 @@ found in the LICENSE file in the root of this package.
 ### Checkout
 
 ```bash
-mkdir template
-cd template
+mkdir rljson
+cd rljson
 git clone https://github.com/rljson/template.git
 cd template
 ```
