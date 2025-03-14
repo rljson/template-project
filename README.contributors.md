@@ -1,21 +1,54 @@
-# Contributors
+<!--
+// @license
+// Copyright (c) 2025 Rljson
+//
+// Use of this source code is governed by terms that can be
+// found in the LICENSE file in the root of this package.
+-->
 
-## Issues
+# Contributors Guide
 
-Check out [./README.trouble.md](./README.trouble.md)
+- [Install](#install)
+  - [Checkout](#checkout)
+  - [Install pnpm](#install-pnpm)
+  - [Install dependencies](#install-dependencies)
+  - [Install Vscode extensions](#install-vscode-extensions)
+  - [Uninstall Jest and Jasmine](#uninstall-jest-and-jasmine)
+  - [Install GitHub CLI](#install-github-cli)
+- [Develop](#develop)
+  - [Read architecture doc](#read-architecture-doc)
+  - [Debug](#debug)
+  - [Update goldens](#update-goldens)
+  - [Test and Build](#test-and-build)
+- [Workflow](#workflow)
+  - [Set a PR title](#set-a-pr-title)
+  - [Create a feature branch](#create-a-feature-branch)
+  - [Debug and dDevelop](#debug-and-ddevelop)
+  - [Commit](#commit)
+  - [Update dependencies](#update-dependencies)
+  - [Increase version](#increase-version)
+  - [Create a pull request](#create-a-pull-request)
+  - [Wait until PR is merged](#wait-until-pr-is-merged)
+  - [Delete feature branch](#delete-feature-branch)
+  - [Publish to NPM](#publish-to-npm)
+- [Troubleshooting](#troubleshooting)
+  - [Checkout README.trouble.md](#checkout-readmetroublemd)
+  - [File issues on GitHub](#file-issues-on-github)
 
-Report issues as <https://github.com/rljson/template/issues>
+<!-- ........................................................................-->
 
-## Check out
+## Install
+
+### Checkout
 
 ```bash
-mkdir rljson
-cd rljson
+mkdir template
+cd template
 git clone https://github.com/rljson/template.git
 cd template
 ```
 
-## Install pnpm
+### Install pnpm
 
 Windows:
 
@@ -29,89 +62,186 @@ Mac:
 sudo corepack enable pnpm
 ```
 
-## Install dependencies
+### Install dependencies
 
 ```bash
 pnpm install
 ```
 
-## Run the tests
+### Install Vscode extensions
 
-```bash
-pnpm run test
-```
+Open this project in `vscode`.
 
-## Build the package
+Press `Cmd+Shift+P`.
 
-```bash
-pnpm run build
-```
+Type `Extensions: Show Recommended Extensions` and press `Enter`.
 
-## Publish the package
+The recommended extensions will be shown.
 
-1. Open `package.json`.
-2. Increase the `version` number.
-3. Compile TypeScript:
+Make sure, all recommended extensions are shown.
 
-   ```bash
-   pnpm run build
-   ```
+### Uninstall Jest and Jasmine
 
-4. Perform a dry-run of the publish process:
-
-   ```bash
-   pnpm publish --access=public --dry-run
-   ```
-
-5. Review the uploaded changes.
-6. Publish the package:
-
-   ```bash
-   pnpm publish --access=public
-   ```
-
-## Architecture
-
-Read [README.architecture.md](./README.architecture.md) to get an overview of
-the package architecture.
-
-## Install VS Code extensions
-
-1. Open this project in `VS Code`.
-2. Press `Cmd+Shift+P`.
-3. Type `Extensions: Show Recommended Extensions` and press `Enter`.
-4. The recommended extensions will be displayed.
-5. Make sure all recommended extensions are installed.
-
-## Uninstall all test extensions (e.g., Jest or Jasmine)
-
-Jest or Jasmine extensions conflict with the `Vitest` extension used in this
+Jest or Jasmine extensions conflict with the `Vitest` extension used for this
 project.
 
-Uninstall them if they are installed.
+Uninstall them, if you have installed them.
 
-## Debug tests
+### Install GitHub CLI
 
-1. In `VS Code`, click on the `Test Tube` icon in the left sidebar to open the
-   `Test Explorer`.
-2. At the top, click the `Refresh` icon to update the test list.
-3. Open a test file (`*.spec.ts`).
-4. Set a breakpoint.
-5. Press `Alt` and click the play button next to the test.
+Install GitHub CLI on Mac
+
+```bash
+brew install gh
+```
+
+Login
+
+```bash
+gh auth login
+```
+
+<!-- ........................................................................-->
+
+## Develop
+
+### Read architecture doc
+
+Read [README.architecture.md](./README.architecture.md) to get an overview
+of the package's architecture.
+
+### Debug
+
+In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
+
+At the `top`, click on the `refresh` icon to show update the tests.
+
+Open a test file (`*.spec.ts`)
+
+Set a breakpoint.
+
+Press `alt` and click on the play button left beside the test.
 
 Execution should stop at the breakpoint.
 
-## Update goldens
+### Update goldens
 
-In various tests, we create golden files, which serve as reference files that
-are compared against test-generated files.
-
-If a change is detected, the test fails.
-
-To update the golden files, run:
+In various tests we are creating golden files, that are reference files that
+are compared against the files created in the tests.
 
 ```bash
-pnpm run updateGoldens
+pnpm updateGoldens
 ```
 
-Then, check the changes in the `test/goldens` folder.
+### Test and Build
+
+```bash
+pnpm test &&\
+pnpm build
+```
+
+<!-- ........................................................................-->
+
+## Workflow
+
+### Set a PR title
+
+Replace `PR Title` below
+
+```bash
+export PR_TITLE="PR Title"
+```
+
+### Create a feature branch
+
+Checkout a clean main branch
+
+```bash
+git checkout main && \
+git fetch && \
+git pull
+```
+
+Create a new feature branch
+
+```bash
+export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]/_/g'` &&\
+git checkout -b $BRANCH
+```
+
+### Debug and dDevelop
+
+Debug and develop
+
+### Commit
+
+If you only have one thing changed, execute
+
+```bash
+git add . && git commit -m "$PR_TITLE"
+```
+
+### Update dependencies
+
+```bash
+pnpm update --latest &&\
+git commit -m"Update dependencies"
+```
+
+### Increase version
+
+```bash
+pnpm version patch --no-git-tag-version && \
+git commit -am"Increase version"
+```
+
+### Create a pull request
+
+```bash
+git push -u origin $BRANCH && \
+gh pr create --base main --title "$PR_TITLE" --body "" && \
+gh pr merge --auto --squash
+```
+
+### Wait until PR is merged
+
+```bash
+echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
+echo "Wait until PR is closed ..." && \
+until gh pr view --json closed | jq -e '.closed == true' >/dev/null; do
+  sleep 2 >/dev/null;
+done;
+```
+
+### Delete feature branch
+
+```bash
+git fetch && git checkout main && \
+git reset --soft origin/main && \
+git stash -m"PR Aftermath" && \
+git pull && \
+git branch -d $BRANCH
+```
+
+### Publish to NPM
+
+```bash
+npm publish --access public && \
+git tag $(npm pkg get version | tr -d '\\"')
+```
+
+<!-- ........................................................................-->
+
+## Troubleshooting
+
+### Checkout README.trouble.md
+
+Checkout [./README.trouble.md](./README.trouble.md)
+
+### File issues on GitHub
+
+Visit <https://github.com/rljson/template/issues>
+
+Check if there is already an issue for your problem.
+
+If no, report the issue.
