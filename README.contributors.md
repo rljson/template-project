@@ -23,7 +23,7 @@ found in the LICENSE file in the root of this package.
 - [Workflow](#workflow)
   - [Set a PR title](#set-a-pr-title)
   - [Create a feature branch](#create-a-feature-branch)
-  - [Debug and dDevelop](#debug-and-ddevelop)
+  - [Debug and develop](#debug-and-develop)
   - [Commit](#commit)
   - [Update dependencies](#update-dependencies)
   - [Increase version](#increase-version)
@@ -169,7 +169,7 @@ export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]
 git checkout -b $BRANCH
 ```
 
-### Debug and dDevelop
+### Debug and develop
 
 Debug and develop
 
