@@ -14,11 +14,14 @@ export const example = () => {
   const h2 = (text: string) => l(`  ${text.split('\n')}`);
   const p = (text: string) => l(`    ${text}`);
 
+  // Example
   h1('Template.example');
   h2('Returns an instance of the template.');
   const example = Template.example;
   p(JSON.stringify(example, null, 2));
 };
 
-// Comment out to run via »npx vite-node src/example.ts«:
-// example();
+/*
+// Run via "npx vite-node src/example.ts"
+example();
+*/
