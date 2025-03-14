@@ -28,12 +28,20 @@ export const expectGolden = (fileName: string) => {
         writeFileSync(filePath, expected);
       }
 
-      // Compare log messages with golden file
-      const golden = readFileSync(filePath, 'utf8');
-      const message =
-        `Golden "${fileName}" does not match expected content. ` +
-        'Consider to rebuild goldens using "npm run updateGoldens".';
-      expect(golden, message).toBe(expected);
+      // Check if golden file exists
+      let needsGoldenUpdate: boolean = true;
+      try {
+        const golden = readFileSync(filePath, 'utf8');
+        needsGoldenUpdate = golden !== expected;
+      } catch {
+        needsGoldenUpdate = true;
+      }
+
+      if (needsGoldenUpdate) {
+        expect.fail(
+          `Golden "${fileName}" has changed. Please run »pnpm updateGoldens« and check changes.`,
+        );
+      }
     },
   };
 };
