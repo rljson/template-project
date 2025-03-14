@@ -22,6 +22,7 @@ found in the LICENSE file in the root of this package.
   - [Test and Build](#test-and-build)
 - [Workflow](#workflow)
   - [Set a PR title](#set-a-pr-title)
+  - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
   - [Debug and develop](#debug-and-develop)
   - [Commit](#commit)
@@ -136,7 +137,7 @@ pnpm updateGoldens
 ### Test and Build
 
 ```bash
-pnpm test &&\
+pnpm test
 pnpm build
 ```
 
@@ -146,26 +147,22 @@ pnpm build
 
 ### Set a PR title
 
-Replace `PR Title` below
-
 ```bash
 export PR_TITLE="PR Title"
 ```
 
-### Create a feature branch
-
-Checkout a clean main branch
+### Checkout main
 
 ```bash
-git checkout main && \
-git fetch && \
+git checkout main
+git fetch
 git pull
 ```
 
-Create a new feature branch
+### Create a feature branch
 
 ```bash
-export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]/_/g'` &&\
+export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]/_/g'`
 git checkout -b $BRANCH
 ```
 
@@ -184,22 +181,22 @@ git add . && git commit -m "$PR_TITLE"
 ### Update dependencies
 
 ```bash
-pnpm update --latest &&\
+pnpm update --latest
 git commit -m"Update dependencies"
 ```
 
 ### Increase version
 
 ```bash
-pnpm version patch --no-git-tag-version && \
+pnpm version patch --no-git-tag-version
 git commit -am"Increase version"
 ```
 
 ### Create a pull request
 
 ```bash
-git push -u origin $BRANCH && \
-gh pr create --base main --title "$PR_TITLE" --body "" && \
+git push -u origin $BRANCH
+gh pr create --base main --title "$PR_TITLE" --body ""
 gh pr merge --auto --squash
 ```
 
@@ -207,26 +204,35 @@ gh pr merge --auto --squash
 
 ```bash
 echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
-echo "Wait until PR is closed ..." && \
-until gh pr view --json closed | jq -e '.closed == true' >/dev/null; do
-  sleep 2 >/dev/null;
-done;
+echo -e "\033[33mWait until PR is closed or merged ...\033[0m"
+
+while true; do
+  STATUS=$(gh pr view --json state | jq -r '.state')
+  if [ "$STATUS" = "CLOSED" ] || [ "$STATUS" = "MERGED" ]; then
+    echo -e "\033[32mPR has been merged or closed.\033[0m"
+    break
+  elif [ "$STATUS" = "FAILED" ]; then
+    echo -e "\033[31mError: PR has failed.\033[0m"
+    exit 1
+  fi
+  sleep 2
+done
 ```
 
 ### Delete feature branch
 
 ```bash
-git fetch && git checkout main && \
-git reset --soft origin/main && \
-git stash -m"PR Aftermath" && \
-git pull && \
+git fetch && git checkout main
+git reset --soft origin/main
+git stash -m"PR Aftermath"
+git pull
 git branch -d $BRANCH
 ```
 
 ### Publish to NPM
 
 ```bash
-npm publish --access public && \
+npm publish --access public
 git tag $(npm pkg get version | tr -d '\\"')
 ```
 
