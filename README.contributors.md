@@ -182,7 +182,7 @@ git add . && git commit -m "$PR_TITLE"
 
 ```bash
 pnpm update --latest
-git commit -m"Update dependencies"
+git commit -am"Update dependencies"
 ```
 
 ### Increase version
