@@ -1,8 +1,12 @@
+// @license
+// Copyright (c) 2025 Rljson
+//
+// Use of this source code is governed by terms that can be
+// found in the LICENSE file in the root of this package.
+
 import { resolve } from 'path';
-// vite.config.ts
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-
 
 export default defineConfig({
   plugins: [dts({ include: ['src/*'] })],
@@ -18,7 +22,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        '@rljson/format',
+        '@rljson/rljson',
         '@rljson/json',
         '@rljson/hash',
         // Add all peer depencies from package.json here

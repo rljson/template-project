@@ -420,6 +420,16 @@
         "Use of this source code is governed by terms that can be",
         "found in the LICENSE file in the root of this package."
       ]
+    },
+    {
+      "language": "markdown",
+      "template": [
+        "@license",
+        "Copyright (c) <<year>> Rljson",
+        "",
+        "Use of this source code is governed by terms that can be",
+        "found in the LICENSE file in the root of this package."
+      ]
     }
   ],
 
