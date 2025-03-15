@@ -4,7 +4,7 @@
 // Use of this source code is governed by terms that can be
 // found in the LICENSE file in the root of this package.
 
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdir, readFile, writeFile } from 'fs/promises';
 import { dirname, join, relative } from 'path';
 import { expect } from 'vitest';
 
@@ -20,7 +20,7 @@ export const shouldUpdateGoldens = () => {
  */
 export const expectGolden = (fileName: string) => {
   return {
-    toBe: (expected: any) => {
+    toBe: async (expected: any) => {
       if (typeof expected !== 'string') {
         expected = JSON.stringify(expected, null, 2);
       }
@@ -31,14 +31,14 @@ export const expectGolden = (fileName: string) => {
 
       // Write golden file
       if (shouldUpdateGoldens()) {
-        mkdirSync(dirname(filePath), { recursive: true });
-        writeFileSync(filePath, expected);
+        await mkdir(dirname(filePath), { recursive: true });
+        await writeFile(filePath, expected);
       }
 
       // Check if golden file exists
       let needsGoldenUpdate: boolean = true;
       try {
-        const golden = readFileSync(filePath, 'utf8');
+        const golden = await readFile(filePath, 'utf8');
         needsGoldenUpdate = golden !== expected;
       } catch {
         needsGoldenUpdate = true;
