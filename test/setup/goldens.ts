@@ -5,7 +5,7 @@
 // found in the LICENSE file in the root of this package.
 
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
+import { dirname, join, relative } from 'path';
 import { expect } from 'vitest';
 
 /// If this is set to true, the golden files will be updated.
@@ -27,6 +27,7 @@ export const expectGolden = (fileName: string) => {
 
       const goldensDir = join(__dirname, '..', 'goldens');
       const filePath = join(goldensDir, fileName);
+      const filePathRelative = relative(process.cwd(), filePath);
 
       // Write golden file
       if (shouldUpdateGoldens()) {
@@ -45,7 +46,7 @@ export const expectGolden = (fileName: string) => {
 
       if (needsGoldenUpdate) {
         expect.fail(
-          `Golden "${fileName}" has changed. Please run »pnpm updateGoldens« and check changes.`,
+          `Run »pnpm updateGoldens« and review "${filePathRelative}".`,
         );
       }
     },
