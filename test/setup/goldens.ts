@@ -21,10 +21,12 @@ export const shouldUpdateGoldens = () => {
 export const expectGolden = (fileName: string) => {
   return {
     toBe: async (expected: any) => {
+      // Stringify json
       if (typeof expected !== 'string') {
         expected = JSON.stringify(expected, null, 2);
       }
 
+      // Get golden file path
       const goldensDir = join(__dirname, '..', 'goldens');
       const filePath = join(goldensDir, fileName);
       const filePathRelative = relative(process.cwd(), filePath);
@@ -44,6 +46,7 @@ export const expectGolden = (fileName: string) => {
         needsGoldenUpdate = true;
       }
 
+      // Fail if golden file needs update
       if (needsGoldenUpdate) {
         expect.fail(
           `Run »pnpm updateGoldens« and review "${filePathRelative}".`,
