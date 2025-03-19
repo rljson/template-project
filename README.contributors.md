@@ -388,7 +388,7 @@ pnpm build
 Replace `ClassA` by `ClassB` in the following script and run it:
 
 ```bash
-npx vite-node ./scripts/rename-class.ts
+node ./scripts/rename-class.js Template ClassB
 ```
 
 <!-- ........................................................................-->
