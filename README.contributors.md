@@ -71,9 +71,9 @@ Windows: Visit <https://cli.github.com>
 
 Mac
 
-```bash
-brew install gh
-```
+Restart vscode when opened
+
+### Login GitHub Cli
 
 Restart Terminal when opened
 
