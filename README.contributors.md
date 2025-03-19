@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin $BRANCH
-gh pr create --base main --title "$PR_TITLE" --body ""
+git push -u origin make_readme_ready_for_windows
+gh pr create --base main --title "Make README ready for windows" --body ""
 gh pr merge --auto --squash
 ```
 
@@ -296,7 +296,7 @@ git fetch && git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d $BRANCH
+git branch -d make_readme_ready_for_windows
 ```
 
 ### Publish to NPM
