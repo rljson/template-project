@@ -71,9 +71,9 @@ Windows: Visit <https://cli.github.com>
 
 Mac
 
-Restart vscode when opened
+Visit <https://github.com/>
 
-### Login GitHub Cli
+In the top right corner, click `Sign up`
 
 Restart Terminal when opened
 
@@ -310,7 +310,7 @@ git tag $(npm pkg get version | tr -d '\\"')
 
 ## Use this helpers
 
-### Read architecture doc
+### Replace in this doc
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
