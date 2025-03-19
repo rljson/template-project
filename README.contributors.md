@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `make_readme_ready_for_windows` by the name of your new branch
+Replace `make_wait_for_pr_script_ready_for_windows` by the name of your new branch
 
-Replace `Make README ready for windows` by your new commit message and PR title
+Replace `Add wait-for-pr.js script` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b make_readme_ready_for_windows
+git checkout -b make_wait_for_pr_script_ready_for_windows
 ```
 
 ### Update dependencies
@@ -246,7 +246,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Make README ready for windows"
+git commit -m "Add wait-for-pr.js script"
 ```
 
 ### Increase version
@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin make_readme_ready_for_windows
-gh pr create --base main --title "Make README ready for windows" --body ""
+git push -u origin make_wait_for_pr_script_ready_for_windows
+gh pr create --base main --title "Add wait-for-pr.js script" --body ""
 gh pr merge --auto --squash
 ```
 
@@ -296,7 +296,7 @@ git fetch && git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d make_readme_ready_for_windows
+git branch -d make_wait_for_pr_script_ready_for_windows
 ```
 
 ### Publish to NPM

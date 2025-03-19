@@ -24,7 +24,7 @@ function getPRUrl() {
     const url = parsed.url;
     console.log(blue(url));
   } catch (error) {
-    console.error(red('Error fetching PR URL'));
+    console.error(yellow('No PR available'));
     process.exit(1);
   }
 }
