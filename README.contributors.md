@@ -71,9 +71,9 @@ Windows: Visit <https://cli.github.com>
 
 Mac
 
-```bash
-brew install gh
-```
+Visit <https://github.com/>
+
+In the top right corner, click `Sign up`
 
 Restart Terminal when opened
 
@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `make_readme_ready_for_windows` by the name of your new branch
+Replace `make_wait_for_pr_script_ready_for_windows` by the name of your new branch
 
-Replace `Make README ready for windows` by your new commit message and PR title
+Replace `Add wait-for-pr.js script` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b make_readme_ready_for_windows
+git checkout -b make_wait_for_pr_script_ready_for_windows
 ```
 
 ### Update dependencies
@@ -246,7 +246,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Make README ready for windows"
+git commit -m "Add wait-for-pr.js script"
 ```
 
 ### Increase version
@@ -265,28 +265,15 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin make_readme_ready_for_windows
-gh pr create --base main --title "Make README ready for windows" --body ""
+git push -u origin make_wait_for_pr_script_ready_for_windows
+gh pr create --base main --title "Add wait-for-pr.js script" --body " "
 gh pr merge --auto --squash
 ```
 
 ### Wait until PR is merged
 
 ```bash
-echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
-echo -e "\033[33mWait until PR is closed or merged ...\033[0m"
-
-while true; do
-  STATUS=$(gh pr view --json state | jq -r '.state')
-  if [ "$STATUS" = "CLOSED" ] || [ "$STATUS" = "MERGED" ]; then
-    echo -e "\033[32mPR has been merged or closed.\033[0m"
-    break
-  elif [ "$STATUS" = "FAILED" ]; then
-    echo -e "\033[31mError: PR has failed.\033[0m"
-    break
-  fi
-  sleep 2
-done
+node ./scripts/wait-for-pr.js
 ```
 
 ### Delete feature branch
@@ -296,7 +283,7 @@ git fetch && git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d make_readme_ready_for_windows
+git branch -d make_wait_for_pr_script_ready_for_windows
 ```
 
 ### Publish to NPM
@@ -310,7 +297,7 @@ git tag $(npm pkg get version | tr -d '\\"')
 
 ## Use this helpers
 
-### Read architecture doc
+### Replace in this doc
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.

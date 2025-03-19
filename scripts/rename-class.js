@@ -34,7 +34,7 @@ const replaceIncludesFirst = (directory) => {
     if (file.isDirectory()) {
       if (file.name.startsWith('.') || file.name === 'node_modules') continue;
       replaceIncludesFirst(fullPath);
-    } else if (/(\.ts|\.md|\.json)$/.test(file.name)) {
+    } else if (/(\.ts|\.md|\.js|\.json)$/.test(file.name)) {
       let content = fs.readFileSync(fullPath, 'utf8');
       content = content.replace(
         new RegExp(`(.*)${SNAKE_CLASS_A}(\\.ts)?([\\.\\/\\'\\\"\\\\])`, 'g'),
@@ -54,7 +54,7 @@ const replaceInFiles = (directory) => {
     if (file.isDirectory()) {
       if (file.name.startsWith('.') || file.name === 'node_modules') continue;
       replaceInFiles(fullPath);
-    } else if (/(\.ts|\.md|\.json)$/.test(file.name)) {
+    } else if (/(\.ts|\.md|\.js|\.json)$/.test(file.name)) {
       let content = fs.readFileSync(fullPath, 'utf8');
       content = content
         .replace(new RegExp(CLASS_A, 'g'), CLASS_B)
