@@ -28,17 +28,15 @@ found in the LICENSE file in the root of this package.
   - [Replace in this doc](#replace-in-this-doc)
   - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
-  - [Update dependencies](#update-dependencies)
   - [Debug and develop](#debug-and-develop)
   - [Commit](#commit)
+  - [Update dependencies](#update-dependencies)
   - [Increase version](#increase-version)
   - [Build](#build)
   - [Create a pull request](#create-a-pull-request)
-  - [Wait until PR is merged](#wait-until-pr-is-merged)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
 - [Use this helpers](#use-this-helpers)
-  - [Read architecture doc](#read-architecture-doc)
   - [Debug with Vscode](#debug-with-vscode)
   - [Update goldens](#update-goldens)
   - [Test and Build](#test-and-build)
@@ -211,9 +209,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `fix_an_issue_in_readme` by the name of your new branch
+Replace `update-readme-settings-and-more-js` by the name of your new branch
 
-Replace `Fix an issue in README.contributors.md` by your new commit message and PR title
+Replace `Add update-readme-settings-and-more-js` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +224,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b fix_an_issue_in_readme
+git checkout -b update-readme-settings-and-more-js
 ```
 
 ### Debug and develop
@@ -239,7 +237,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Fix an issue in README.contributors.md"
+git commit -m "Add update-readme-settings-and-more-js"
 ```
 
 ### Update dependencies
@@ -265,8 +263,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin fix_an_issue_in_readme
-gh pr create --base main --title "Fix an issue in README.contributors.md" --body " "
+git push -u origin update-readme-settings-and-more-js
+gh pr create --base main --title "Add update-readme-settings-and-more-js" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -279,7 +277,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d fix_an_issue_in_readme
+git branch -d update-readme-settings-and-more-js
 ```
 
 ### Publish to NPM
