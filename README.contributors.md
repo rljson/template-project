@@ -8,33 +8,24 @@ found in the LICENSE file in the root of this package.
 
 # Contributors Guide
 
-- [Install](#install)
-  - [Windows: Install WSL](#windows-install-wsl)
-  - [Windows: Install node on VWSL](#windows-install-node-on-vwsl)
-  - [Install Vscode](#install-vscode)
-  - [Start Vscode](#start-vscode)
-  - [Windows: Install Vscode wsl extension](#windows-install-vscode-wsl-extension)
-  - [Windows: Connect WSL](#windows-connect-wsl)
-  - [Create a ~/dev folder](#create-a-dev-folder)
-  - [Install Vscode extensions](#install-vscode-extensions)
-  - [Windows: Uninstall existing node](#windows-uninstall-existing-node)
-  - [Windows: Install NVM-Windows](#windows-install-nvm-windows)
-  - [Windows: Install node via nvw-windows](#windows-install-node-via-nvw-windows)
-  - [Install pnpm](#install-pnpm)
-  - [Install dependencies](#install-dependencies)
-  - [Uninstall Jest and Jasmine](#uninstall-jest-and-jasmine)
-  - [Install GitHub CLI](#install-github-cli)
-  - [Login GitHub Cli](#login-github-cli)
-  - [Checkout rljson/template](#checkout-rljsontemplate)
-  - [Open project with Vscode](#open-project-with-vscode)
-- [Develop](#develop)
-  - [Read architecture doc](#read-architecture-doc)
-  - [Debug](#debug)
-  - [Update goldens](#update-goldens)
-  - [Test and Build](#test-and-build)
-  - [Rename classes](#rename-classes)
-- [Workflow](#workflow)
-  - [Set a PR title](#set-a-pr-title)
+- [Install Tools](#install-tools)
+  - [Node](#node)
+  - [PNPM](#pnpm)
+  - [GitHub CLI](#github-cli)
+  - [Vscode](#vscode)
+- [Get access To GitHb](#get-access-to-githb)
+  - [Get an GitHub account](#get-an-github-account)
+  - [Become a contributor](#become-a-contributor)
+  - [Upload your SSH key](#upload-your-ssh-key)
+  - [Login with GitHub CLI](#login-with-github-cli)
+- [Open the code the first time](#open-the-code-the-first-time)
+  - [Create a dev folder](#create-a-dev-folder)
+  - [Clone code](#clone-code)
+  - [Open template with Vscode](#open-template-with-vscode)
+  - [Install recommended extensions](#install-recommended-extensions)
+  - [Activate PNPM for the project](#activate-pnpm-for-the-project)
+- [Develop your feature](#develop-your-feature)
+  - [Replace in this doc](#replace-in-this-doc)
   - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
   - [Update dependencies](#update-dependencies)
@@ -46,265 +37,100 @@ found in the LICENSE file in the root of this package.
   - [Wait until PR is merged](#wait-until-pr-is-merged)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
+- [Use this helpers](#use-this-helpers)
+  - [Read architecture doc](#read-architecture-doc)
+  - [Debug with Vscode](#debug-with-vscode)
+  - [Update goldens](#update-goldens)
+  - [Test and Build](#test-and-build)
+  - [Rename classes](#rename-classes)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
   - [File issues on GitHub](#file-issues-on-github)
 
 <!-- ........................................................................-->
 
-## Install
+## Install Tools
 
-### Windows: Install WSL
+### Node
 
-To ensure the same user experience accross all platforms (windows, linux, mac)
-we are using the Windows Subsystem for Linux WSL.
+[Install Node on Windows](./doc/install/node-win.md)
 
-Press `Windows`
+[Install Node on Mac](./doc/install/node-mac.md)
 
-Type `cmd`
-
-Click `Als Administrator ausführen`
-
-```bash
-wsl --install Ubuntu
-```
-
-Restart computer
-
-Start wsl
-
-```bash
-wsl
-```
-
-Enter username
-
-Enter password
-
-Wait until console is available
-
-Optional: Move home directory to d:
-
-```bash
-sudo mv /home /mnt/d/home
-ln -s /mnt/d/home /home
-```
-
-Install zsh
-
-```bash
-sudo apt update && sudo apt install zsh -y
-chsh -s $(which zsh)
-```
-
-Start zsh the first time
-
-```bash
-zsh
-```
-
-When asked, enter `2` to create a pre-filled `.zshrc`
-
-### Windows: Install node on VWSL
-
-Press `Windows`
-
-Type `Ubuntu`
-
-Click `Ubuntu`
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-```
-
-Restart Ubuntu
-
-```bash
- nvm install --lts
-```
-
-### Install Vscode
-
-Visit <https://code.visualstudio.com/download>
-
-Download and install Vscode
-
-### Start Vscode
-
-Press `Windows`
-
-Type `ubuntu`
-
-Press `Enter`
-
-Start vscode
-
-```bash
-code
-```
-
-### Windows: Install Vscode wsl extension
-
-Press `windows`
-
-Type `vscode`
-
-Press `enter`
-
-Vscode is opened
-
-Open `extensions`
-
-Click into the `top search field`
-
-Type `wsl`
-
-Install the extension
-
-### Windows: Connect WSL
-
-In Vscode, press `Cmd+Shift+P`
-
-Start typing `connect to wsl`
-
-Select `WSL: connect to wsl`
-
-Code will connect to the WSL
-
-### Create a ~/dev folder
-
-```bash
-mkdir ~/dev
-```
-
-### Install Vscode extensions
-
-Open `template` with vscode (see before)
-
-Press `Cmd+Shift+P`.
-
-Type `Extensions: Show Recommended Extensions` and press `Enter`.
-
-The recommended extensions will be shown.
-
-Make sure, all recommended extensions are shown.
-
-### Windows: Uninstall existing node
-
-Uninstall existing Node.js because we will use NVM to manage Node.js versions
-
-#### Clean cache
-
-[Microsoft](https://learn.microsoft.com/de-de/windows/dev-environment/javascript/nodejs-on-windows#install-nvm-windows-nodejs-and-npm)
-
-```bash
-npm cache clean --force
-```
-
-#### Run uninstaller
-
-Press `Windows`
-
-Type `uninstall Node.js`
-
-Klick `Uninstall Node.js`
-
-Follow instructions
-
-#### Remove remaining node.js folders
-
-[Remove remaining node.js folders](https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows)
-
-#### Remove node path from PATH variable
-
-Remove node.js from PATH variable:
-
-Press `Windows`
-
-Type `environment`
-
-Click `Systemumgebungsvariablen bearbeiten`
-
-In the `upper box`, select `PATH`
-
-Click `Bearbeiten`
-
-Search for Node.js path
-
-When existing, remove the entry.
-
-Close the dialog
-
-### Windows: Install NVM-Windows
-
-[Source](https://github.com/coreybutler/nvm-windows#installation--upgrades)
-
-Open <https://github.com/coreybutler/nvm-windows/releases>
-
-Download `nvm-setup.exe` ()
-
-Execute `nvm-setup.exe`
-
-Follow instructions
-
-### Windows: Install node via nvw-windows
-
-Press `Windows`
-
-Type `cmd` and pres `enter`
-
-```bash
-nvm install lts
-nvm use lts
-```
-
-### Install pnpm
-
-#### Windows
-
-Press `Windows`
-
-Type `cmd`
-
-Click `Als Administrator ausführen`
+### PNPM
 
 ```bash
 npm install --global corepack@latest
 corepack enable pnpm
-corepack use pnpm@latest-10
+
 ```
 
-#### Mac/Linux
+### GitHub CLI
+
+Windows: Visit <https://cli.github.com>
+
+Mac
 
 ```bash
-sudo corepack enable pnpm
+brew install gh
 ```
 
-### Install dependencies
+Restart Terminal when opened
 
-```bash
-pnpm install
-```
+### Vscode
 
-### Uninstall Jest and Jasmine
+Visit <https://code.visualstudio.com/download>
 
-Jest or Jasmine extensions conflict with the `Vitest` extension used for this
-project.
+Download and install
 
-Uninstall them, if you have installed them.
+## Get access To GitHb
 
-### Install GitHub CLI
+### Get an GitHub account
 
-| Windows                         | Mac/Linux         |
-| :------------------------------ | :---------------- |
-| Visit <https://cli.github.com/> | `brew install gh` |
-| Download and install            |                   |
+If you have already an GitHub account, skip this step.
 
-Restart vscode when opened
+Visit <https://github.com/>
 
-### Login GitHub Cli
+In the top right corner, click `Sign up`
 
-Login
+Follow the instructions to get an account
+
+### Become a contributor
+
+Ask an Administrator of the <https://github.com/rljson> to perform the
+following steps:
+
+1. Visit <https://github.com/rljson>
+
+2. In the top menu, click `People`
+
+3. Click the green `Invite member` button
+
+4. Enter the new user's GitHub email address.
+
+5. And click `Invite`
+
+6. Wait until the new user has accepted the invitation
+
+7. Assign the right role (member, outside contributor etc) to the new user
+
+### Upload your SSH key
+
+#### Create an SSH key
+
+If you already have created an SSH key, skip this step.
+
+Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
+
+In the Tab bar select either `Mac`, `Windows` or `Linux`
+
+Follow the instructions
+
+### Login with GitHub CLI
+
+We have installed the GitHub CLI before
+
+Now its time to login
 
 ```bash
 gh auth login
@@ -330,76 +156,62 @@ Make sure `rljson` is selected
 
 Click `Authorize GitHub`
 
-### Checkout rljson/template
+## Open the code the first time
+
+### Create a dev folder
+
+The following documentation uses `~/dev` as main checkout folder.
+Please replace this folder by your personal dev folder.
+
+```bash
+cd ~/
+mkdir dev
+cd dev
+mkdir rljson
+cd rljson
+```
+
+### Clone code
 
 ```bash
 cd ~/dev/rljson
 git clone https://github.com/rljson/template.git
 ```
 
-### Open project with Vscode
+### Open template with Vscode
 
 ```bash
-cd ~/dev/rljson/template
-code .
+code template
+```
+
+### Install recommended extensions
+
+When opening this project the first time, you will be asked to install
+recommended workspace extensions. Click on `install`.
+
+If you do not see this step,
+
+Press `Ctrl+Shift+P`.
+
+Type `Extensions: Show Recommended Extensions` and press `Enter`.
+
+The recommended extensions will be shown.
+
+Make sure, all recommended extensions are installed.
+
+### Activate PNPM for the project
+
+```bash
+corepack use pnpm
 ```
 
 <!-- ........................................................................-->
 
-## Develop
+## Develop your feature
 
-### Read architecture doc
+### Replace in this doc
 
-Read [README.architecture.md](./README.architecture.md) to get an overview
-of the package's architecture.
-
-### Debug
-
-In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
-
-At the `top`, click on the `refresh` icon to show update the tests.
-
-Open a test file (`*.spec.ts`)
-
-Set a breakpoint.
-
-Press `alt` and click on the play button left beside the test.
-
-Execution should stop at the breakpoint.
-
-### Update goldens
-
-In various tests we are creating golden files, that are reference files that
-are compared against the files created in the tests.
-
-```bash
-pnpm updateGoldens
-```
-
-### Test and Build
-
-```bash
-pnpm test
-pnpm build
-```
-
-### Rename classes
-
-Replace `ClassA` by `ClassB` in the following script and run it:
-
-```bash
-node ./scripts/rename-class.js Template ClassB
-```
-
-<!-- ........................................................................-->
-
-## Workflow
-
-### Set a PR title
-
-```bash
-export PR_TITLE="PR Title"
-```
+Replace `make_readme_ready_for_windows` by the name of your new branch
 
 ### Checkout main
 
@@ -412,8 +224,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]/_/g'`
-git checkout -b $BRANCH
+git checkout -b make_readme_ready_for_windows
 ```
 
 ### Update dependencies
@@ -490,6 +301,53 @@ git branch -d $BRANCH
 ```bash
 npm publish --access public
 git tag $(npm pkg get version | tr -d '\\"')
+```
+
+<!-- ........................................................................-->
+
+## Use this helpers
+
+### Read architecture doc
+
+Read [README.architecture.md](./README.architecture.md) to get an overview
+of the package's architecture.
+
+### Debug with Vscode
+
+In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
+
+At the `top`, click on the `refresh` icon to show update the tests.
+
+Open a test file (`*.spec.ts`)
+
+Set a breakpoint.
+
+Press `alt` and click on the play button left beside the test.
+
+Execution should stop at the breakpoint.
+
+### Update goldens
+
+In various tests we are creating golden files, that are reference files that
+are compared against the files created in the tests.
+
+```bash
+pnpm updateGoldens
+```
+
+### Test and Build
+
+```bash
+pnpm test
+pnpm build
+```
+
+### Rename classes
+
+Replace `ClassA` by `ClassB` in the following script and run it:
+
+```bash
+node ./scripts/rename-class.js Template ClassB
 ```
 
 <!-- ........................................................................-->
