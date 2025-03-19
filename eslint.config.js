@@ -23,11 +23,30 @@ export default [
     files: ['src/**/*.ts'],
     plugins: { tsdoc, jsdoc, tseslint },
     rules: {
-      'tsdoc/syntax': 'off',
+      'tsdoc/syntax': 'error',
       ...jsdoc.configs['flat/recommended-typescript-flavor-error'].rules,
       'jsdoc/require-description': 'error',
       'jsdoc/require-param-type': 'off',
-      'jsdoc/require-jsdoc': 'off',
+      'jsdoc/require-jsdoc': [
+        'off',
+        {
+          require: {
+            FunctionDeclaration: true,
+            FunctionExpression: true,
+            MethodDefinition: true,
+            ClassDeclaration: true,
+            ClassExpression: true,
+            ArrowFunctionExpression: true,
+          },
+          contexts: [
+            'TSInterfaceDeclaration',
+            'TSTypeAliasDeclaration',
+            'TSEnumDeclaration',
+            'TSPropertySignature',
+          ],
+          publicOnly: true,
+        },
+      ],
       'jsdoc/require-returns-type': 'off',
       'jsdoc/require-returns': 'off',
     },
