@@ -66,7 +66,7 @@ async function checkIfPipelineHasFailed() {
 }
 
 async function waitForPRClosure() {
-  console.log(yellow('Wait until PR is closed or merged ...'));
+  console.log(yellow('Wait for pipelines, code review and merge ...'));
 
   while (true) {
     const status = getPRStatus();
