@@ -211,7 +211,7 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `fix_an_ission_in_readme` by the name of your new branch
+Replace `fix_an_issue_in_readme` by the name of your new branch
 
 Replace `Fix an issue in README.contributors.md` by your new commit message and PR title
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b fix_an_ission_in_readme
+git checkout -b fix_an_issue_in_readme
 ```
 
 ### Debug and develop
@@ -239,7 +239,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Add add-version-tag.js script"
+git commit -m "Fix an issue in README.contributors.md"
 ```
 
 ### Update dependencies
@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin fix_an_ission_in_readme
-gh pr create --base main --title "Add add-version-tag.js script" --body " "
+git push -u origin fix_an_issue_in_readme
+gh pr create --base main --title "Fix an issue in README.contributors.md" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -279,7 +279,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d fix_an_ission_in_readme
+git branch -d fix_an_issue_in_readme
 ```
 
 ### Publish to NPM
