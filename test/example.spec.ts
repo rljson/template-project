@@ -24,5 +24,7 @@ describe('example', () => {
     // Restore console.log
     console.log = log;
     expect('hello').toBe('hello');
+
+    expect.fail();
   });
 });
