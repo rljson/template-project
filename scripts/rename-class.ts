@@ -35,7 +35,7 @@ const replaceIncludesFirst = (directory: string): void => {
     } else if (/\.(ts|md|json)$/.test(file.name)) {
       let content = fs.readFileSync(fullPath, 'utf8');
       content = content.replace(
-        new RegExp(`(.*)${SNAKE_CLASS_A}(\.ts['"];)`, 'g'),
+        new RegExp(`(.*)${SNAKE_CLASS_A}(\.ts)?['"];`, 'g'),
         `$1${SNAKE_CLASS_B}$2`,
       );
       fs.writeFileSync(fullPath, content, 'utf8');
