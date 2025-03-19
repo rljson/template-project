@@ -1,9 +1,3 @@
-// @license
-// Copyright (c) 2025 Rljson
-//
-// Use of this source code is governed by terms that can be
-// found in the LICENSE file in the root of this package.
-
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
@@ -28,6 +22,26 @@ const LOWER_CLASS_A = toLowerFirst(CLASS_A);
 const LOWER_CLASS_B = toLowerFirst(CLASS_B);
 const SNAKE_CLASS_A = toSnakeCase(CLASS_A);
 const SNAKE_CLASS_B = toSnakeCase(CLASS_B);
+
+const replaceIncludesFirst = (directory: string): void => {
+  const files = fs.readdirSync(directory, { withFileTypes: true });
+
+  for (const file of files) {
+    const fullPath = path.join(directory, file.name);
+
+    if (file.isDirectory()) {
+      if (file.name.startsWith('.') || file.name === 'node_modules') continue;
+      replaceIncludesFirst(fullPath);
+    } else if (/\.(ts|md|json)$/.test(file.name)) {
+      let content = fs.readFileSync(fullPath, 'utf8');
+      content = content.replace(
+        new RegExp(`(import .* from ['"].*/?)${CLASS_A}(\.ts['"];)`, 'g'),
+        `$1${CLASS_B}$2`,
+      );
+      fs.writeFileSync(fullPath, content, 'utf8');
+    }
+  }
+};
 
 const replaceInFiles = (directory: string): void => {
   const files = fs.readdirSync(directory, { withFileTypes: true });
@@ -65,6 +79,9 @@ const renameFiles = (directory: string): void => {
   }
 };
 
+console.log('Replacing includes first...');
+replaceIncludesFirst('.');
+
 console.log('Replacing occurrences in files...');
 replaceInFiles('.');
 
@@ -72,7 +89,4 @@ console.log('Renaming files...');
 renameFiles('.');
 
 console.log('Updating goldens...');
-
-fs.rmSync('test/goldens', { recursive: true, force: true });
-
-execSync('pnpm updateGoldens', { stdio: 'inherit' });
+execSync('rm -rf test/goldens && pnpm updateGoldens', { stdio: 'inherit' });
