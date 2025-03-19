@@ -1,4 +1,3 @@
-
 @echo off
 setlocal enabledelayedexpansion
 
@@ -17,10 +16,14 @@ call :toSnakeCase "%CLASS_B%" SNAKE_CLASS_B
 
 :: Replace in files
 for /r %%F in (*.ts *.md package.json) do (
-    if "%%F" neq "./node_modules/*" (
-        powershell -Command "(Get-Content -Raw '%%F') -replace '%CLASS_A%', '%CLASS_B%' | Set-Content '%%F'"
-        powershell -Command "(Get-Content -Raw '%%F') -replace '!LOWER_CLASS_A!', '!LOWER_CLASS_B!' | Set-Content '%%F'"
-        powershell -Command "(Get-Content -Raw '%%F') -replace '!SNAKE_CLASS_A!', '!SNAKE_CLASS_B!' | Set-Content '%%F'"
+    set "filePath=%%F"
+    for %%D in (%%~dpF) do (
+        if /I not "%%~nxD" lss "d" if "%%~nxD" neq "node_modules" if "%%~nxD" neq "test" if "%%~nxD" neq "goldens" if "%%~nxD" neq "pnpm-lock.yaml" (
+            echo Processing: %%F
+            powershell -Command "(Get-Content -Raw '%%F') -replace '%CLASS_A%', '%CLASS_B%' | Set-Content '%%F'"
+            powershell -Command "(Get-Content -Raw '%%F') -replace '!LOWER_CLASS_A!', '!LOWER_CLASS_B!' | Set-Content '%%F'"
+            powershell -Command "(Get-Content -Raw '%%F') -replace '!SNAKE_CLASS_A!', '!SNAKE_CLASS_B!' | Set-Content '%%F'"
+        )
     )
 )
 
@@ -28,7 +31,11 @@ for /r %%F in (*.ts *.md package.json) do (
 for /r %%F in (*!SNAKE_CLASS_A!*) do (
     set "newname=%%F"
     set "newname=!newname:%SNAKE_CLASS_A%=%SNAKE_CLASS_B%!"
-    ren "%%F" "!newname!"
+    for %%D in (%%~dpF) do (
+        if /I not "%%~nxD" lss "d" if "%%~nxD" neq "node_modules" if "%%~nxD" neq "test" if "%%~nxD" neq "goldens" if "%%~nxD" neq "pnpm-lock.yaml" (
+            ren "%%F" "!newname!"
+        )
+    )
 )
 
 :: Update goldens
@@ -58,30 +65,30 @@ set "input=%~1"
 set "output=%input%"
 for %%A in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do set "output=!output:%%A=-%%A!"
 set "output=!output:A=a!"
-set "output=!output:B=b!"
-set "output=!output:C=c!"
-set "output=!output:D=d!"
-set "output=!output:E=e!"
-set "output=!output:F=f!"
-set "output=!output:G=g!"
-set "output=!output:H=h!"
-set "output=!output:I=i!"
-set "output=!output:J=j!"
-set "output=!output:K=k!"
-set "output=!output:L=l!"
-set "output=!output:M=m!"
-set "output=!output:N=n!"
-set "output=!output:O=o!"
-set "output=!output:P=p!"
-set "output=!output:Q=q!"
-set "output=!output:R=r!"
-set "output=!output:S=s!"
-set "output=!output:T=t!"
-set "output=!output:U=u!"
-set "output=!output:V=v!"
-set "output=!output:W=w!"
-set "output=!output:X=x!"
-set "output=!output:Y=y!"
-set "output=!output:Z=z!"
+set "output:B=b!"
+set "output:C=c!"
+set "output:D=d!"
+set "output:E=e!"
+set "output:F=f!"
+set "output:G=g!"
+set "output:H=h!"
+set "output:I=i!"
+set "output:J=j!"
+set "output:K=k!"
+set "output:L=l!"
+set "output:M=m!"
+set "output:N=n!"
+set "output:O=o!"
+set "output:P=p!"
+set "output:Q=q!"
+set "output:R=r!"
+set "output:S=s!"
+set "output:T=t!"
+set "output:U=u!"
+set "output:V=v!"
+set "output:W=w!"
+set "output:X=x!"
+set "output:Y=y!"
+set "output:Z=z!"
 endlocal & set "%2=%output%"
 goto :eof
