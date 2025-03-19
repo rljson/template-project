@@ -1,6 +1,6 @@
 {
   "name": "@rljson/template",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "template rljson files",
   "homepage": "https://github.com/rljson/template",
   "bugs": "https://github.com/rljson/template/issues",
@@ -20,7 +20,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "pnpx vite build && tsc && cp README* dist && mkdir dist/src && cp src/example.ts dist/src",
+    "build": "pnpx vite build && tsc && node scripts/copy-readme-to-dist.js",
     "test": "pnpx vitest run --coverage && pnpm run lint",
     "prebuild": "npm run test",
     "prepublishOnly": "npm run build",

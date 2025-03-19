@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `make_wait_for_pr_script_ready_for_windows` by the name of your new branch
+Replace `fix_an_issue_in_README_contributors` by the name of your new branch
 
-Replace `Add wait-for-pr.js script` by your new commit message and PR title
+Replace `Fix an issue in README.contributors.md` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b make_wait_for_pr_script_ready_for_windows
+git checkout -b fix_an_issue_in_README_contributors
 ```
 
 ### Update dependencies
@@ -246,7 +246,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Add wait-for-pr.js script"
+git commit -m "Fix an issue in README.contributors.md"
 ```
 
 ### Increase version
@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin make_wait_for_pr_script_ready_for_windows
-gh pr create --base main --title "Add wait-for-pr.js script" --body " "
+git push -u origin fix_an_issue_in_README_contributors
+gh pr create --base main --title "Fix an issue in README.contributors.md" --body " "
 gh pr merge --auto --squash
 ```
 
@@ -279,11 +279,12 @@ node ./scripts/wait-for-pr.js
 ### Delete feature branch
 
 ```bash
-git fetch && git checkout main
+git fetch
+git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d make_wait_for_pr_script_ready_for_windows
+git branch -d fix_an_issue_in_README_contributors
 ```
 
 ### Publish to NPM
