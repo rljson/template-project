@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `fix_an_markdown_warning` by the name of your new branch
+Replace `improve_message_while_waiting_for_pr` by the name of your new branch
 
-Replace `Fix an Markdown warning` by your new commit message and PR title
+Replace `Improve message while waiting for PR` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b fix_an_markdown_warning
+git checkout -b improve_message_while_waiting_for_pr
 ```
 
 ### Update dependencies
@@ -246,7 +246,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Fix an Markdown warning"
+git commit -m "Improve message while waiting for PR"
 ```
 
 ### Increase version
@@ -265,14 +265,9 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin fix_an_markdown_warning
-gh pr create --base main --title "Fix an Markdown warning" --body " "
+git push -u origin improve_message_while_waiting_for_pr
+gh pr create --base main --title "Improve message while waiting for PR" --body " "
 gh pr merge --auto --squash
-```
-
-### Wait until PR is merged
-
-```bash
 node ./scripts/wait-for-pr.js
 ```
 
@@ -284,7 +279,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d fix_an_markdown_warning
+git branch -d improve_message_while_waiting_for_pr
 ```
 
 ### Publish to NPM
