@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint';
 export default [
   // Ignore all JS files and the coverage folder
   {
-    ignores: ['**/*.js', 'coverage/', 'dist/'],
+    ignores: ['**/*.js', 'coverage/', 'dist/', 'node_modules', '.git'],
   },
 
   // Configure eslint for implementation files
