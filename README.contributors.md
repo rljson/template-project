@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `improve_version_tag_script` by the name of your new branch
+Replace `fix_an_ission_in_readme` by the name of your new branch
 
-Replace `Improve version tag script` by your new commit message and PR title
+Replace `Fix an issue in README.contributors.md` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b improve_version_tag_script
+git checkout -b fix_an_ission_in_readme
 ```
 
 ### Debug and develop
@@ -265,7 +265,7 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin improve_version_tag_script
+git push -u origin fix_an_ission_in_readme
 gh pr create --base main --title "Add add-version-tag.js script" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
@@ -279,14 +279,14 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d improve_version_tag_script
+git branch -d fix_an_ission_in_readme
 ```
 
 ### Publish to NPM
 
 ```bash
 npm publish --access public
-node scripts/add-verson-tag.js
+node scripts/add-version-tag.js
 ```
 
 <!-- ........................................................................-->
