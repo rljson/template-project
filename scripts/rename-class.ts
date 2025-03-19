@@ -35,8 +35,8 @@ const replaceIncludesFirst = (directory: string): void => {
     } else if (/\.(ts|md|json)$/.test(file.name)) {
       let content = fs.readFileSync(fullPath, 'utf8');
       content = content.replace(
-        new RegExp(`(import .* from ['"].*/?)${CLASS_A}(\.ts['"];)`, 'g'),
-        `$1${CLASS_B}$2`,
+        new RegExp(`(.*)${SNAKE_CLASS_A}(\.ts['"];)`, 'g'),
+        `$1${SNAKE_CLASS_B}$2`,
       );
       fs.writeFileSync(fullPath, content, 'utf8');
     }
@@ -89,4 +89,5 @@ console.log('Renaming files...');
 renameFiles('.');
 
 console.log('Updating goldens...');
-execSync('rm -rf test/goldens && pnpm updateGoldens', { stdio: 'inherit' });
+fs.rmSync('test/goldens', { recursive: true, force: true });
+execSync('pnpm updateGoldens', { stdio: 'inherit' });
