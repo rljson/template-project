@@ -266,27 +266,14 @@ npm run build
 
 ```bash
 git push -u origin make_wait_for_pr_script_ready_for_windows
-gh pr create --base main --title "Add wait-for-pr.js script" --body ""
+gh pr create --base main --title "Add wait-for-pr.js script" --body " "
 gh pr merge --auto --squash
 ```
 
 ### Wait until PR is merged
 
 ```bash
-echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
-echo -e "\033[33mWait until PR is closed or merged ...\033[0m"
-
-while true; do
-  STATUS=$(gh pr view --json state | jq -r '.state')
-  if [ "$STATUS" = "CLOSED" ] || [ "$STATUS" = "MERGED" ]; then
-    echo -e "\033[32mPR has been merged or closed.\033[0m"
-    break
-  elif [ "$STATUS" = "FAILED" ]; then
-    echo -e "\033[31mError: PR has failed.\033[0m"
-    break
-  fi
-  sleep 2
-done
+node ./scripts/wait-for-pr.js
 ```
 
 ### Delete feature branch

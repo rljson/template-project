@@ -43,6 +43,28 @@ function getPRStatus() {
   }
 }
 
+async function checkIfPipelineHasFailed() {
+  try {
+    const json = execSync(
+      'gh run list --repo rljson/template --limit 1 --json status,conclusion',
+      {
+        encoding: 'utf-8',
+      },
+    ).trim();
+
+    const jsonParsed = JSON.parse(json);
+    if (jsonParsed.length) {
+      if (jsonParsed[0].conclusion === 'failure') {
+        console.error(red('Pipeline has failed. Please fix.'));
+        process.exit(1);
+      }
+    }
+  } catch (e) {
+    console.error(red('Error fetching pipeline status'));
+    process.exit(1);
+  }
+}
+
 async function waitForPRClosure() {
   console.log(yellow('Wait until PR is closed or merged ...'));
 
@@ -59,6 +81,9 @@ async function waitForPRClosure() {
       console.log(red('Error: PR has failed.'));
       break;
     }
+
+    await checkIfPipelineHasFailed();
+
     await new Promise((resolve) => setTimeout(resolve, 2000));
   }
 }
