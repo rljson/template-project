@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `add_version_tag_script` by the name of your new branch
+Replace `improve_version_tag_script` by the name of your new branch
 
-Replace `Add add-version-tag.js script` by your new commit message and PR title
+Replace `Improve version tag script` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b add_version_tag_script
+git checkout -b improve_version_tag_script
 ```
 
 ### Debug and develop
@@ -265,7 +265,7 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin add_version_tag_script
+git push -u origin improve_version_tag_script
 gh pr create --base main --title "Add add-version-tag.js script" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
@@ -279,7 +279,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d add_version_tag_script
+git branch -d improve_version_tag_script
 ```
 
 ### Publish to NPM
