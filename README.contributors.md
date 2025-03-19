@@ -8,21 +8,24 @@ found in the LICENSE file in the root of this package.
 
 # Contributors Guide
 
-- [Install](#install)
-  - [Checkout](#checkout)
-  - [Install pnpm](#install-pnpm)
-  - [Install dependencies](#install-dependencies)
-  - [Install Vscode extensions](#install-vscode-extensions)
-  - [Uninstall Jest and Jasmine](#uninstall-jest-and-jasmine)
-  - [Install GitHub CLI](#install-github-cli)
-- [Develop](#develop)
-  - [Read architecture doc](#read-architecture-doc)
-  - [Debug](#debug)
-  - [Update goldens](#update-goldens)
-  - [Test and Build](#test-and-build)
-  - [Rename classes](#rename-classes)
-- [Workflow](#workflow)
-  - [Set a PR title](#set-a-pr-title)
+- [Install Tools](#install-tools)
+  - [Node](#node)
+  - [PNPM](#pnpm)
+  - [GitHub CLI](#github-cli)
+  - [Vscode](#vscode)
+- [Get access To GitHb](#get-access-to-githb)
+  - [Get an GitHub account](#get-an-github-account)
+  - [Become a contributor](#become-a-contributor)
+  - [Upload your SSH key](#upload-your-ssh-key)
+  - [Login with GitHub CLI](#login-with-github-cli)
+- [Open the code the first time](#open-the-code-the-first-time)
+  - [Create a dev folder](#create-a-dev-folder)
+  - [Clone code](#clone-code)
+  - [Open template with Vscode](#open-template-with-vscode)
+  - [Install recommended extensions](#install-recommended-extensions)
+  - [Activate PNPM for the project](#activate-pnpm-for-the-project)
+- [Develop your feature](#develop-your-feature)
+  - [Replace in this doc](#replace-in-this-doc)
   - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
   - [Update dependencies](#update-dependencies)
@@ -34,86 +37,285 @@ found in the LICENSE file in the root of this package.
   - [Wait until PR is merged](#wait-until-pr-is-merged)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
+- [Use this helpers](#use-this-helpers)
+  - [Read architecture doc](#read-architecture-doc)
+  - [Debug with Vscode](#debug-with-vscode)
+  - [Update goldens](#update-goldens)
+  - [Test and Build](#test-and-build)
+  - [Rename classes](#rename-classes)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
   - [File issues on GitHub](#file-issues-on-github)
 
 <!-- ........................................................................-->
 
-## Install
+## Install Tools
 
-### Checkout
+### Node
 
-```bash
-mkdir rljson
-cd rljson
-git clone https://github.com/rljson/template.git
-cd template
-```
+[Install Node on Windows](./doc/install/node-win.md)
 
-### Install pnpm
+[Install Node on Mac](./doc/install/node-mac.md)
 
-Windows:
+### PNPM
 
 ```bash
+npm install --global corepack@latest
 corepack enable pnpm
+
 ```
 
-Mac:
+### GitHub CLI
 
-```bash
-sudo corepack enable pnpm
-```
+Windows: Visit <https://cli.github.com>
 
-### Install dependencies
-
-```bash
-pnpm install
-```
-
-### Install Vscode extensions
-
-Open this project in `vscode`.
-
-Press `Cmd+Shift+P`.
-
-Type `Extensions: Show Recommended Extensions` and press `Enter`.
-
-The recommended extensions will be shown.
-
-Make sure, all recommended extensions are shown.
-
-### Uninstall Jest and Jasmine
-
-Jest or Jasmine extensions conflict with the `Vitest` extension used for this
-project.
-
-Uninstall them, if you have installed them.
-
-### Install GitHub CLI
-
-Install GitHub CLI on Mac
+Mac
 
 ```bash
 brew install gh
 ```
 
-Login
+Restart Terminal when opened
+
+### Vscode
+
+Visit <https://code.visualstudio.com/download>
+
+Download and install
+
+## Get access To GitHb
+
+### Get an GitHub account
+
+If you have already an GitHub account, skip this step.
+
+Visit <https://github.com/>
+
+In the top right corner, click `Sign up`
+
+Follow the instructions to get an account
+
+### Become a contributor
+
+Ask an Administrator of the <https://github.com/rljson> to perform the
+following steps:
+
+1. Visit <https://github.com/rljson>
+
+2. In the top menu, click `People`
+
+3. Click the green `Invite member` button
+
+4. Enter the new user's GitHub email address.
+
+5. And click `Invite`
+
+6. Wait until the new user has accepted the invitation
+
+7. Assign the right role (member, outside contributor etc) to the new user
+
+### Upload your SSH key
+
+#### Create an SSH key
+
+If you already have created an SSH key, skip this step.
+
+Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
+
+In the Tab bar select either `Mac`, `Windows` or `Linux`
+
+Follow the instructions
+
+### Login with GitHub CLI
+
+We have installed the GitHub CLI before
+
+Now its time to login
 
 ```bash
 gh auth login
 ```
 
+Select the following answers:
+
+- ? Where do you use GitHub? `GitHub.com`
+- ? What is your preferred protocol for Git operations on this host? `SSH`
+- ? Upload your SSH public key to your GitHub account? `C:\Users\...`
+- ? Title for your SSH key: (GitHub CLI) `Dell Laptop`
+- ? How would you like to authenticate GitHub CLI? `Login with a web browser`
+
+Copy the shown one-time code, right beside `First copy your one-time code`
+
+Press `Enter`
+
+Brows opens
+
+Paste the code copied before
+
+Make sure `rljson` is selected
+
+Click `Authorize GitHub`
+
+## Open the code the first time
+
+### Create a dev folder
+
+The following documentation uses `~/dev` as main checkout folder.
+Please replace this folder by your personal dev folder.
+
+```bash
+cd ~/
+mkdir dev
+cd dev
+mkdir rljson
+cd rljson
+```
+
+### Clone code
+
+```bash
+cd ~/dev/rljson
+git clone https://github.com/rljson/template.git
+```
+
+### Open template with Vscode
+
+```bash
+code template
+```
+
+### Install recommended extensions
+
+When opening this project the first time, you will be asked to install
+recommended workspace extensions. Click on `install`.
+
+If you do not see this step,
+
+Press `Ctrl+Shift+P`.
+
+Type `Extensions: Show Recommended Extensions` and press `Enter`.
+
+The recommended extensions will be shown.
+
+Make sure, all recommended extensions are installed.
+
+### Activate PNPM for the project
+
+```bash
+corepack use pnpm
+```
+
 <!-- ........................................................................-->
 
-## Develop
+## Develop your feature
+
+### Replace in this doc
+
+Replace `make_readme_ready_for_windows` by the name of your new branch
+
+Replace `Make README ready for windows` by your new commit message and PR title
+
+### Checkout main
+
+```bash
+git checkout main
+git fetch
+git pull
+```
+
+### Create a feature branch
+
+```bash
+git checkout -b make_readme_ready_for_windows
+```
+
+### Update dependencies
+
+```bash
+pnpm update --latest
+git commit -am"Update dependencies"
+```
+
+### Debug and develop
+
+Debug and develop
+
+### Commit
+
+If you only have one thing changed, execute
+
+```bash
+git add .
+git commit -m "Make README ready for windows"
+```
+
+### Increase version
+
+```bash
+pnpm version patch --no-git-tag-version
+git commit -am"Increase version"
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Create a pull request
+
+```bash
+git push -u origin make_readme_ready_for_windows
+gh pr create --base main --title "Make README ready for windows" --body ""
+gh pr merge --auto --squash
+```
+
+### Wait until PR is merged
+
+```bash
+echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
+echo -e "\033[33mWait until PR is closed or merged ...\033[0m"
+
+while true; do
+  STATUS=$(gh pr view --json state | jq -r '.state')
+  if [ "$STATUS" = "CLOSED" ] || [ "$STATUS" = "MERGED" ]; then
+    echo -e "\033[32mPR has been merged or closed.\033[0m"
+    break
+  elif [ "$STATUS" = "FAILED" ]; then
+    echo -e "\033[31mError: PR has failed.\033[0m"
+    break
+  fi
+  sleep 2
+done
+```
+
+### Delete feature branch
+
+```bash
+git fetch && git checkout main
+git reset --soft origin/main
+git stash -m"PR Aftermath"
+git pull
+git branch -d make_readme_ready_for_windows
+```
+
+### Publish to NPM
+
+```bash
+npm publish --access public
+git tag $(npm pkg get version | tr -d '\\"')
+```
+
+<!-- ........................................................................-->
+
+## Use this helpers
 
 ### Read architecture doc
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
 
-### Debug
+### Debug with Vscode
 
 In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
 
@@ -148,148 +350,7 @@ pnpm build
 Replace `ClassA` by `ClassB` in the following script and run it:
 
 ```bash
-export CLASS_A="ColumnSelection"
-export CLASS_B="ColumnsConfig"
-
-to_snake_case() {
-    echo "$1" | sed -E 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]'
-}
-
-to_lower_first() {
-    first_char=$(echo "$1" | cut -c1 | tr '[:upper:]' '[:lower:]')
-    rest_chars=$(echo "$1" | cut -c2-)
-    echo "$first_char$rest_chars"
-}
-
-export LOWER_CLASS_A=$(to_lower_first "$CLASS_A")
-export LOWER_CLASS_B=$(to_lower_first "$CLASS_B")
-export SNAKE_CLASS_A=$(to_snake_case "$CLASS_A")
-export SNAKE_CLASS_B=$(to_snake_case "$CLASS_B")
-
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
-    -exec sed -i '' "s/$CLASS_A/$CLASS_B/g" {} +
-
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
-    -exec sed -i '' "s/$LOWER_CLASS_A/$LOWER_CLASS_B/g" {} +
-
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
-    -exec sed -i '' "s/$SNAKE_CLASS_A/$SNAKE_CLASS_B/g" {} +
-
-find . -type f -not -path "*/node_modules/*" -not -path "*/.*" -name "*$SNAKE_CLASS_A*" \
-    -exec bash -c 'mv "$1" "${1//'"$SNAKE_CLASS_A"'/'"$SNAKE_CLASS_B"'}"' _ {} \;
-
-rm -rf test/goldens
-pnpm updateGoldens
-```
-
-Review the changes.
-
-Commit
-
-```bash
-git stage .
-git commit -am"Rename $CLASS_A to $CLASS_B"
-```
-
-<!-- ........................................................................-->
-
-## Workflow
-
-### Set a PR title
-
-```bash
-export PR_TITLE="PR Title"
-```
-
-### Checkout main
-
-```bash
-git checkout main
-git fetch
-git pull
-```
-
-### Create a feature branch
-
-```bash
-export BRANCH=`echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]/_/g'`
-git checkout -b $BRANCH
-```
-
-### Update dependencies
-
-```bash
-pnpm update --latest
-git commit -am"Update dependencies"
-```
-
-### Debug and develop
-
-Debug and develop
-
-### Commit
-
-If you only have one thing changed, execute
-
-```bash
-git add . && git commit -m "$PR_TITLE"
-```
-
-### Increase version
-
-```bash
-pnpm version patch --no-git-tag-version
-git commit -am"Increase version"
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-### Create a pull request
-
-```bash
-git push -u origin $BRANCH
-gh pr create --base main --title "$PR_TITLE" --body ""
-gh pr merge --auto --squash
-```
-
-### Wait until PR is merged
-
-```bash
-echo -e "\033[34m$(gh pr view --json url | jq -r '.url')\033[0m"
-echo -e "\033[33mWait until PR is closed or merged ...\033[0m"
-
-while true; do
-  STATUS=$(gh pr view --json state | jq -r '.state')
-  if [ "$STATUS" = "CLOSED" ] || [ "$STATUS" = "MERGED" ]; then
-    echo -e "\033[32mPR has been merged or closed.\033[0m"
-    break
-  elif [ "$STATUS" = "FAILED" ]; then
-    echo -e "\033[31mError: PR has failed.\033[0m"
-    break
-  fi
-  sleep 2
-done
-```
-
-### Delete feature branch
-
-```bash
-git fetch && git checkout main
-git reset --soft origin/main
-git stash -m"PR Aftermath"
-git pull
-git branch -d $BRANCH
-```
-
-### Publish to NPM
-
-```bash
-npm publish --access public
-git tag $(npm pkg get version | tr -d '\\"')
+node ./scripts/rename-class.js Template ClassB
 ```
 
 <!-- ........................................................................-->
