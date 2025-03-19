@@ -9,12 +9,23 @@ found in the LICENSE file in the root of this package.
 # Contributors Guide
 
 - [Install](#install)
-  - [Checkout](#checkout)
+  - [Windows: Install WSL](#windows-install-wsl)
+  - [Install Vscode](#install-vscode)
+  - [Start Vscode](#start-vscode)
+  - [Windows: Install Vscode wsl extension](#windows-install-vscode-wsl-extension)
+  - [Windows: Connect WSL](#windows-connect-wsl)
+  - [Create a ~/dev folder](#create-a-dev-folder)
+  - [Install Vscode extensions](#install-vscode-extensions)
+  - [Windows: Uninstall existing node](#windows-uninstall-existing-node)
+  - [Windows: Install NVM-Windows](#windows-install-nvm-windows)
+  - [Windows: Install node via nvw-windows](#windows-install-node-via-nvw-windows)
   - [Install pnpm](#install-pnpm)
   - [Install dependencies](#install-dependencies)
-  - [Install Vscode extensions](#install-vscode-extensions)
   - [Uninstall Jest and Jasmine](#uninstall-jest-and-jasmine)
   - [Install GitHub CLI](#install-github-cli)
+  - [Login GitHub Cli](#login-github-cli)
+  - [Checkout rljson/template](#checkout-rljsontemplate)
+  - [Open project with Vscode](#open-project-with-vscode)
 - [Develop](#develop)
   - [Read architecture doc](#read-architecture-doc)
   - [Debug](#debug)
@@ -42,24 +53,209 @@ found in the LICENSE file in the root of this package.
 
 ## Install
 
-### Checkout
+### Windows: Install WSL
+
+To ensure the same user experience accross all platforms (windows, linux, mac)
+we are using the Windows Subsystem for Linux WSL.
+
+Press `Windows`
+
+Type `cmd`
+
+Click `Als Administrator ausführen`
 
 ```bash
-mkdir rljson
-cd rljson
-git clone https://github.com/rljson/template.git
-cd template
+wsl --install Ubuntu
+```
+
+Restart computer
+
+Start wsl
+
+```bash
+wsl
+```
+
+Enter username
+
+Enter password
+
+Wait until console is available
+
+Optional: Move home directory to d:
+
+```bash
+sudo mv /home /mnt/d/home
+ln -s /mnt/d/home /home
+```
+
+Install zsh
+
+```bash
+sudo apt update && sudo apt install zsh -y
+chsh -s $(which zsh)
+```
+
+Start zsh the first time
+
+```bash
+zsh
+```
+
+When asked, enter `2` to create a pre-filled `.zshrc`
+
+### Install Vscode
+
+Visit <https://code.visualstudio.com/download>
+
+Download and install Vscode
+
+### Start Vscode
+
+Press `Windows`
+
+Type `ubuntu`
+
+Press `Enter`
+
+Start vscode
+
+```bash
+code
+```
+
+### Windows: Install Vscode wsl extension
+
+Press `windows`
+
+Type `vscode`
+
+Press `enter`
+
+Vscode is opened
+
+Open `extensions`
+
+Click into the `top search field`
+
+Type `wsl`
+
+Install the extension
+
+### Windows: Connect WSL
+
+In Vscode, press `Cmd+Shift+P`
+
+Start typing `connect to wsl`
+
+Select `WSL: connect to wsl`
+
+Code will connect to the WSL
+
+### Create a ~/dev folder
+
+```bash
+mkdir ~/dev
+```
+
+### Install Vscode extensions
+
+Open `template` with vscode (see before)
+
+Press `Cmd+Shift+P`.
+
+Type `Extensions: Show Recommended Extensions` and press `Enter`.
+
+The recommended extensions will be shown.
+
+Make sure, all recommended extensions are shown.
+
+### Windows: Uninstall existing node
+
+Uninstall existing Node.js because we will use NVM to manage Node.js versions
+
+#### Clean cache
+
+[Microsoft](https://learn.microsoft.com/de-de/windows/dev-environment/javascript/nodejs-on-windows#install-nvm-windows-nodejs-and-npm)
+
+```bash
+npm cache clean --force
+```
+
+#### Run uninstaller
+
+Press `Windows`
+
+Type `uninstall Node.js`
+
+Klick `Uninstall Node.js`
+
+Follow instructions
+
+#### Remove remaining node.js folders
+
+[Remove remaining node.js folders](https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows)
+
+#### Remove node path from PATH variable
+
+Remove node.js from PATH variable:
+
+Press `Windows`
+
+Type `environment`
+
+Click `Systemumgebungsvariablen bearbeiten`
+
+In the `upper box`, select `PATH`
+
+Click `Bearbeiten`
+
+Search for Node.js path
+
+When existing, remove the entry.
+
+Close the dialog
+
+### Windows: Install NVM-Windows
+
+[Source](https://github.com/coreybutler/nvm-windows#installation--upgrades)
+
+Open <https://github.com/coreybutler/nvm-windows/releases>
+
+Download `nvm-setup.exe` ()
+
+Execute `nvm-setup.exe`
+
+Follow instructions
+
+### Windows: Install node via nvw-windows
+
+Press `Windows`
+
+Type `cmd` and pres `enter`
+
+```bash
+nvm install lts
+nvm use lts
 ```
 
 ### Install pnpm
 
-Windows:
+#### Windows
+
+Press `Windows`
+
+Type `cmd`
+
+Click `Als Administrator ausführen`
 
 ```bash
+npm install --global corepack@latest
 corepack enable pnpm
+corepack use pnpm@latest-10
 ```
 
-Mac:
+#### Mac/Linux
 
 ```bash
 sudo corepack enable pnpm
@@ -71,18 +267,6 @@ sudo corepack enable pnpm
 pnpm install
 ```
 
-### Install Vscode extensions
-
-Open this project in `vscode`.
-
-Press `Cmd+Shift+P`.
-
-Type `Extensions: Show Recommended Extensions` and press `Enter`.
-
-The recommended extensions will be shown.
-
-Make sure, all recommended extensions are shown.
-
 ### Uninstall Jest and Jasmine
 
 Jest or Jasmine extensions conflict with the `Vitest` extension used for this
@@ -92,16 +276,53 @@ Uninstall them, if you have installed them.
 
 ### Install GitHub CLI
 
-Install GitHub CLI on Mac
+| Windows                         | Mac/Linux         |
+| :------------------------------ | :---------------- |
+| Visit <https://cli.github.com/> | `brew install gh` |
+| Download and install            |                   |
 
-```bash
-brew install gh
-```
+Restart vscode when opened
+
+### Login GitHub Cli
 
 Login
 
 ```bash
 gh auth login
+```
+
+Select the following answers:
+
+- ? Where do you use GitHub? `GitHub.com`
+- ? What is your preferred protocol for Git operations on this host? `SSH`
+- ? Upload your SSH public key to your GitHub account? `C:\Users\...`
+- ? Title for your SSH key: (GitHub CLI) `Dell Laptop`
+- ? How would you like to authenticate GitHub CLI? `Login with a web browser`
+
+Copy the shown one-time code, right beside `First copy your one-time code`
+
+Press `Enter`
+
+Brows opens
+
+Paste the code copied before
+
+Make sure `rljson` is selected
+
+Click `Authorize GitHub`
+
+### Checkout rljson/template
+
+```bash
+cd ~/dev/rljson
+git clone https://github.com/rljson/template.git
+```
+
+### Open project with Vscode
+
+```bash
+cd ~/dev/rljson/template
+code .
 ```
 
 <!-- ........................................................................-->

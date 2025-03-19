@@ -19,6 +19,7 @@
     "luanpotter.dart-import",
     "antfu.vite",
     "vitest.explorer",
-    "github.vscode-github-actions"
+    "github.vscode-github-actions",
+    "yzhang.markdown-all-in-one"
   ]
 }
