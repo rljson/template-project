@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `improve_message_while_waiting_for_pr` by the name of your new branch
+Replace `add_version_tag_script` by the name of your new branch
 
-Replace `Improve message while waiting for PR` by your new commit message and PR title
+Replace `Add add-version-tag.js script` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,14 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b improve_message_while_waiting_for_pr
-```
-
-### Update dependencies
-
-```bash
-pnpm update --latest
-git commit -am"Update dependencies"
+git checkout -b add_version_tag_script
 ```
 
 ### Debug and develop
@@ -246,7 +239,14 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Improve message while waiting for PR"
+git commit -m "Add add-version-tag.js script"
+```
+
+### Update dependencies
+
+```bash
+pnpm update --latest
+git commit -am"Update dependencies"
 ```
 
 ### Increase version
@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin improve_message_while_waiting_for_pr
-gh pr create --base main --title "Improve message while waiting for PR" --body " "
+git push -u origin add_version_tag_script
+gh pr create --base main --title "Add add-version-tag.js script" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -279,14 +279,14 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d improve_message_while_waiting_for_pr
+git branch -d add_version_tag_script
 ```
 
 ### Publish to NPM
 
 ```bash
 npm publish --access public
-git tag $(npm pkg get version | tr -d '\\"')
+node scripts/add-verson-tag.js
 ```
 
 <!-- ........................................................................-->
