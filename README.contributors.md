@@ -211,9 +211,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `fix_an_issue_in_README_contributors` by the name of your new branch
+Replace `fix_an_markdown_warning` by the name of your new branch
 
-Replace `Fix an issue in README.contributors.md` by your new commit message and PR title
+Replace `Fix an Markdown warning` by your new commit message and PR title
 
 ### Checkout main
 
@@ -226,7 +226,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b fix_an_issue_in_README_contributors
+git checkout -b fix_an_markdown_warning
 ```
 
 ### Update dependencies
@@ -246,7 +246,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Fix an issue in README.contributors.md"
+git commit -m "Fix an Markdown warning"
 ```
 
 ### Increase version
@@ -265,8 +265,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin fix_an_issue_in_README_contributors
-gh pr create --base main --title "Fix an issue in README.contributors.md" --body " "
+git push -u origin fix_an_markdown_warning
+gh pr create --base main --title "Fix an Markdown warning" --body " "
 gh pr merge --auto --squash
 ```
 
@@ -284,7 +284,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d fix_an_issue_in_README_contributors
+git branch -d fix_an_markdown_warning
 ```
 
 ### Publish to NPM
@@ -297,8 +297,6 @@ git tag $(npm pkg get version | tr -d '\\"')
 <!-- ........................................................................-->
 
 ## Use this helpers
-
-### Replace in this doc
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
