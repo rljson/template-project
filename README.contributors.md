@@ -213,6 +213,8 @@ corepack use pnpm
 
 Replace `make_readme_ready_for_windows` by the name of your new branch
 
+Replace `Make README ready for windows` by your new commit message and PR title
+
 ### Checkout main
 
 ```bash
@@ -243,7 +245,8 @@ Debug and develop
 If you only have one thing changed, execute
 
 ```bash
-git add . && git commit -m "$PR_TITLE"
+git add .
+git commit -m "Make README ready for windows"
 ```
 
 ### Increase version
