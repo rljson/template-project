@@ -33,17 +33,20 @@ export SNAKE_CLASS_A=$(to_snake_case "$CLASS_A")
 export SNAKE_CLASS_B=$(to_snake_case "$CLASS_B")
 
 # Replace in files
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
+find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) \
+    ! -path "*/.*/*" ! -path "*/node_modules/*" \
     -exec $SED_CMD "s/$CLASS_A/$CLASS_B/g" {} +
 
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
+find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) \
+    ! -path "*/.*/*" ! -path "*/node_modules/*" \
     -exec $SED_CMD "s/$LOWER_CLASS_A/$LOWER_CLASS_B/g" {} +
 
-find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) -not -path "./node_modules/*" \
+find . -type f \( -name "*.ts" -o -name "*.md" -o -name "package.json" \) \
+    ! -path "*/.*/*" ! -path "*/node_modules/*" \
     -exec $SED_CMD "s/$SNAKE_CLASS_A/$SNAKE_CLASS_B/g" {} +
 
 # Rename files
-find . -type f -not -path "*/node_modules/*" -not -path "*/.*" -name "*$SNAKE_CLASS_A*" \
+find . -type f ! -path "*/.*/*" ! -path "*/node_modules/*" -name "*$SNAKE_CLASS_A*" \
     -exec bash -c 'mv "$1" "${1//'"$SNAKE_CLASS_A"'/'"$SNAKE_CLASS_B"'}"' _ {} \;
 
 # Update goldens
