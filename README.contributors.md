@@ -10,6 +10,7 @@ found in the LICENSE file in the root of this package.
 
 - [Install](#install)
   - [Windows: Install WSL](#windows-install-wsl)
+  - [Windows: Install node on VWSL](#windows-install-node-on-vwsl)
   - [Install Vscode](#install-vscode)
   - [Start Vscode](#start-vscode)
   - [Windows: Install Vscode wsl extension](#windows-install-vscode-wsl-extension)
@@ -103,6 +104,24 @@ zsh
 ```
 
 When asked, enter `2` to create a pre-filled `.zshrc`
+
+### Windows: Install node on VWSL
+
+Press `Windows`
+
+Type `Ubuntu`
+
+Click `Ubuntu`
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+```
+
+Restart Ubuntu
+
+```bash
+ nvm install --lts
+```
 
 ### Install Vscode
 
