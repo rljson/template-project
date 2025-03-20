@@ -14,6 +14,7 @@ Tricks and tips for high performance coders
 
 - [Vscode](#vscode)
   - [Quick open files](#quick-open-files)
+  - [Multi cursor search and replace](#multi-cursor-search-and-replace)
 
 ## Vscode
 
@@ -23,3 +24,19 @@ Tricks and tips for high performance coders
 
 ✅ Quick open files by pressing `Cmd+Shift+P`, entering fragments of the
 file name and pressing `enter`.
+
+### Multi cursor search and replace
+
+❌ Don't use `Cmd+F` to search and replace files
+
+✅ Double click a word to be searched and replaced
+
+Press `Ctrl+ddd...` to create a multi cursor on all occurrences of the word
+
+Modify the word
+
+Press `ESC` to finish multi cursor edit
+
+When doing this the first time, search will not be case sensitive
+
+Press `Cmd+F`, click `Aa` to make `Ctrl+d` multi case sensitive

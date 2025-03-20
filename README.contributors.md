@@ -44,6 +44,7 @@ found in the LICENSE file in the root of this package.
   - [Publish to NPM](#publish-to-npm)
 - [Workflows](#workflows)
   - [Rename classes](#rename-classes)
+  - [Create a new repo](#create-a-new-repo)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
   - [File issues on GitHub](#file-issues-on-github)
@@ -417,6 +418,10 @@ Replace `ClassA` by `ClassB` in the following script and run it:
 ```bash
 node ./scripts/rename-class.js Template ClassB
 ```
+
+### Create a new repo
+
+To create a new repo checkout [create-new-repo.md](doc/workflows/create-new-repo.md)
 
 <!-- ........................................................................-->
 
