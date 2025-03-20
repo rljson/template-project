@@ -22,7 +22,7 @@ found in the LICENSE file in the root of this package.
   - [Create an account on NPM](#create-an-account-on-npm)
   - [Request access to Rljson](#request-access-to-rljson)
   - [Generate and install an access token](#generate-and-install-an-access-token)
-- [Open the code the first time](#open-the-code-the-first-time)
+- [Open template the first time](#open-template-the-first-time)
   - [Create a dev and rljson folder](#create-a-dev-and-rljson-folder)
   - [Clone code](#clone-code)
   - [Configure email address and user name](#configure-email-address-and-user-name)
@@ -33,18 +33,16 @@ found in the LICENSE file in the root of this package.
   - [Replace in this doc](#replace-in-this-doc)
   - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
-  - [Debug and develop](#debug-and-develop)
+  - [Develop and debug with Vscode](#develop-and-debug-with-vscode)
+  - [Update goldens](#update-goldens)
   - [Commit](#commit)
   - [Update dependencies](#update-dependencies)
   - [Increase version](#increase-version)
-  - [Build](#build)
+  - [Run tests and build](#run-tests-and-build)
   - [Create a pull request](#create-a-pull-request)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
-- [Use this helpers](#use-this-helpers)
-  - [Debug with Vscode](#debug-with-vscode)
-  - [Update goldens](#update-goldens)
-  - [Test and Build](#test-and-build)
+- [Tips and tricks](#tips-and-tricks)
   - [Rename classes](#rename-classes)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
@@ -231,7 +229,7 @@ Replace `your-auth-token` by your token.
 
 Now you should be able to publish package updates
 
-## Open the code the first time
+## Open template the first time
 
 ### Create a dev and rljson folder
 
@@ -319,9 +317,35 @@ git pull
 git checkout -b extend-readmes-on-npm-publishing-and-repo-creation
 ```
 
-### Debug and develop
+### Develop and debug with Vscode
 
-Debug and develop
+In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`
+
+At the `top`, click on the `refresh` icon to show update the tests
+
+Open a test file (`*.spec.ts`)
+
+Set a breakpoint
+
+Press `alt` and click on the play button left beside the test
+
+Execution should stop at the breakpoint
+
+### Update goldens
+
+In various tests test against golden files. To update these, execute:
+
+```bash
+pnpm updateGoldens
+```
+
+In vscode, click the `source control` icon at the left side bar
+
+Click on changed golden files
+
+Review the changes
+
+On unwanted changes, fix the reason and update goldens again
 
 ### Commit
 
@@ -346,7 +370,7 @@ pnpm version patch --no-git-tag-version
 git commit -am"Increase version"
 ```
 
-### Build
+### Run tests and build
 
 ```bash
 npm run build
@@ -381,40 +405,10 @@ node scripts/add-version-tag.js
 
 <!-- ........................................................................-->
 
-## Use this helpers
+## Tips and tricks
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
-
-### Debug with Vscode
-
-In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
-
-At the `top`, click on the `refresh` icon to show update the tests.
-
-Open a test file (`*.spec.ts`)
-
-Set a breakpoint.
-
-Press `alt` and click on the play button left beside the test.
-
-Execution should stop at the breakpoint.
-
-### Update goldens
-
-In various tests we are creating golden files, that are reference files that
-are compared against the files created in the tests.
-
-```bash
-pnpm updateGoldens
-```
-
-### Test and Build
-
-```bash
-pnpm test
-pnpm build
-```
 
 ### Rename classes
 
