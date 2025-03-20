@@ -248,9 +248,6 @@ projects into a `rljson` folder. In this documentation we are using
 `~/dev/rljson` as the development folder.
 
 ```bash
-cd ~/
-mkdir dev
-cd dev
 mkdir rljson
 cd rljson
 ```
@@ -258,7 +255,6 @@ cd rljson
 ### Clone code
 
 ```bash
-cd ~/dev/rljson
 git clone https://github.com/rljson/template.git
 ```
 
@@ -309,9 +305,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `extend-readmes-on-npm-publishing-and-repo-creation` by the name of your new branch
+Replace `my-new-branch` by the name of your new branch
 
-Replace `Extend READMEs on NPM publishing and repo creation` by your new commit message and PR title
+Replace `My new branch does something special` by your new commit message and PR title
 
 ### Checkout main
 
@@ -324,7 +320,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b extend-readmes-on-npm-publishing-and-repo-creation
+git checkout -b my-new-branch
 ```
 
 ### Develop and debug with Vscode
@@ -363,7 +359,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Add extend-readmes-on-npm-publishing-and-repo-creation"
+git commit -m "My new branch does something special"
 ```
 
 ### Update dependencies
@@ -389,8 +385,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin extend-readmes-on-npm-publishing-and-repo-creation
-gh pr create --base main --title "Add extend-readmes-on-npm-publishing-and-repo-creation" --body " "
+git push -u origin my-new-branch
+gh pr create --base main --title "My new branch does something special" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -403,7 +399,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d extend-readmes-on-npm-publishing-and-repo-creation
+git branch -d my-new-branch
 ```
 
 ### Publish to NPM
