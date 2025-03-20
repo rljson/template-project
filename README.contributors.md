@@ -13,14 +13,19 @@ found in the LICENSE file in the root of this package.
   - [PNPM](#pnpm)
   - [GitHub CLI](#github-cli)
   - [Vscode](#vscode)
-- [Get access To GitHb](#get-access-to-githb)
-  - [Get an GitHub account](#get-an-github-account)
-  - [Become a contributor](#become-a-contributor)
-  - [Upload your SSH key](#upload-your-ssh-key)
+- [Get access To GitHub](#get-access-to-github)
+  - [Get a GitHub account](#get-a-github-account)
+  - [Request organization access](#request-organization-access)
+  - [Upload your public SSH key](#upload-your-public-ssh-key)
   - [Login with GitHub CLI](#login-with-github-cli)
-- [Open the code the first time](#open-the-code-the-first-time)
-  - [Create a dev folder](#create-a-dev-folder)
+- [Get access to NPM](#get-access-to-npm)
+  - [Create an account on NPM](#create-an-account-on-npm)
+  - [Request access to Rljson](#request-access-to-rljson)
+  - [Generate and install an access token](#generate-and-install-an-access-token)
+- [Open template the first time](#open-template-the-first-time)
+  - [Create a dev and rljson folder](#create-a-dev-and-rljson-folder)
   - [Clone code](#clone-code)
+  - [Configure email address and user name](#configure-email-address-and-user-name)
   - [Open template with Vscode](#open-template-with-vscode)
   - [Install recommended extensions](#install-recommended-extensions)
   - [Activate PNPM for the project](#activate-pnpm-for-the-project)
@@ -28,19 +33,18 @@ found in the LICENSE file in the root of this package.
   - [Replace in this doc](#replace-in-this-doc)
   - [Checkout main](#checkout-main)
   - [Create a feature branch](#create-a-feature-branch)
-  - [Debug and develop](#debug-and-develop)
+  - [Develop and debug with Vscode](#develop-and-debug-with-vscode)
+  - [Update goldens](#update-goldens)
   - [Commit](#commit)
   - [Update dependencies](#update-dependencies)
   - [Increase version](#increase-version)
-  - [Build](#build)
+  - [Run tests and build](#run-tests-and-build)
   - [Create a pull request](#create-a-pull-request)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
-- [Use this helpers](#use-this-helpers)
-  - [Debug with Vscode](#debug-with-vscode)
-  - [Update goldens](#update-goldens)
-  - [Test and Build](#test-and-build)
+- [Workflows](#workflows)
   - [Rename classes](#rename-classes)
+  - [Create a new repo](#create-a-new-repo)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
   - [File issues on GitHub](#file-issues-on-github)
@@ -57,10 +61,19 @@ found in the LICENSE file in the root of this package.
 
 ### PNPM
 
+On Windows:
+
+Press `Windows`
+
+Type `Cmd`
+
+Select `Open as administrator`
+
+Execute the the following commands
+
 ```bash
 npm install --global corepack@latest
 corepack enable pnpm
-
 ```
 
 ### GitHub CLI
@@ -81,9 +94,9 @@ Visit <https://code.visualstudio.com/download>
 
 Download and install
 
-## Get access To GitHb
+## Get access To GitHub
 
-### Get an GitHub account
+### Get a GitHub account
 
 If you have already an GitHub account, skip this step.
 
@@ -93,10 +106,20 @@ In the top right corner, click `Sign up`
 
 Follow the instructions to get an account
 
-### Become a contributor
+#### Create an SSH key
 
-Ask an Administrator of the <https://github.com/rljson> to perform the
-following steps:
+If you already have created an SSH key, skip this step.
+
+Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
+
+In the Tab bar select either `Mac`, `Windows` or `Linux`
+
+Follow the instructions
+
+### Request organization access
+
+Ask an Administrator of the <https://github.com/rljson> to give you access to
+the Rljson GitHub organization by performing the following steps:
 
 1. Visit <https://github.com/rljson>
 
@@ -112,17 +135,7 @@ following steps:
 
 7. Assign the right role (member, outside contributor etc) to the new user
 
-### Upload your SSH key
-
-#### Create an SSH key
-
-If you already have created an SSH key, skip this step.
-
-Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
-
-In the Tab bar select either `Mac`, `Windows` or `Linux`
-
-Follow the instructions
+### Upload your public SSH key
 
 ### Login with GitHub CLI
 
@@ -154,12 +167,85 @@ Make sure `rljson` is selected
 
 Click `Authorize GitHub`
 
-## Open the code the first time
+## Get access to NPM
 
-### Create a dev folder
+To publish Rljson packages to NPM, you need access.
 
-The following documentation uses `~/dev` as main checkout folder.
-Please replace this folder by your personal dev folder.
+### Create an account on NPM
+
+Open <http://npmjs.com>
+
+On the top right side, click `Sign up`
+
+Follow the instructions to get an account.
+
+### Request access to Rljson
+
+Ask an administrator of the Rljson organization to perform the following steps:
+
+1. Open <http://npmjs.com>
+2. Login
+3. Open <https://www.npmjs.com/settings/rljson/members>
+4. Click on `Invite Members`
+5. Enter your `Username or email`
+6. Click on `Invite`
+
+Open your mails and accept the invitation and follow the instructions
+
+Ask the administrator to assign you the right role by doing the following steps:
+
+1. Open <https://www.npmjs.com/settings/rljson/members>
+2. Assigning the right role to you (`administrator`, `member`)
+
+### Generate and install an access token
+
+Open <http://npmjs.com>
+
+Log in, when not already done
+
+Click on the `avatar` at the top right corner
+
+Click `Access Tokens`
+
+Click `Generate New Token`
+
+Select `Granular Access Tokens`
+
+Select `Classic token`
+
+Enter a `Token name`
+
+Set an `Expiration`
+
+Below `Packages and scopes`, `permissions`, select `Read and write`
+
+Select `All packages` or the packages you are responsible for
+
+Below `Organizations`, `permissions`, select `No access`
+
+Click `Generate Token`
+
+Copy the generated token
+
+When not already existing, create a file `.npmrc` in your `user directory`
+
+Add the following line
+
+```bash
+//registry.npmjs.org/:_authToken=your-auth-token
+```
+
+Replace `your-auth-token` by your token.
+
+Now you should be able to publish package updates
+
+## Open template the first time
+
+### Create a dev and rljson folder
+
+Rljson consists of multiple repos, so we recommend to checkout all rljson
+projects into a `rljson` folder. In this documentation we are using
+`~/dev/rljson` as the development folder.
 
 ```bash
 cd ~/
@@ -174,6 +260,20 @@ cd rljson
 ```bash
 cd ~/dev/rljson
 git clone https://github.com/rljson/template.git
+```
+
+### Configure email address and user name
+
+Replace `first` an `last` by your first and last name and execute:
+
+```bash
+git config --global user.name "first last"
+```
+
+Replace `email` by your email and execute:
+
+```bash
+git config --global user.email "email"
 ```
 
 ### Open template with Vscode
@@ -209,9 +309,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `update-readme-settings-and-more-js` by the name of your new branch
+Replace `extend-readmes-on-npm-publishing-and-repo-creation` by the name of your new branch
 
-Replace `Add update-readme-settings-and-more-js` by your new commit message and PR title
+Replace `Extend READMEs on NPM publishing and repo creation` by your new commit message and PR title
 
 ### Checkout main
 
@@ -224,12 +324,38 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b update-readme-settings-and-more-js
+git checkout -b extend-readmes-on-npm-publishing-and-repo-creation
 ```
 
-### Debug and develop
+### Develop and debug with Vscode
 
-Debug and develop
+In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`
+
+At the `top`, click on the `refresh` icon to show update the tests
+
+Open a test file (`*.spec.ts`)
+
+Set a breakpoint
+
+Press `alt` and click on the play button left beside the test
+
+Execution should stop at the breakpoint
+
+### Update goldens
+
+In various tests test against golden files. To update these, execute:
+
+```bash
+pnpm updateGoldens
+```
+
+In vscode, click the `source control` icon at the left side bar
+
+Click on changed golden files
+
+Review the changes
+
+On unwanted changes, fix the reason and update goldens again
 
 ### Commit
 
@@ -237,7 +363,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Add update-readme-settings-and-more-js"
+git commit -m "Add extend-readmes-on-npm-publishing-and-repo-creation"
 ```
 
 ### Update dependencies
@@ -254,7 +380,7 @@ pnpm version patch --no-git-tag-version
 git commit -am"Increase version"
 ```
 
-### Build
+### Run tests and build
 
 ```bash
 npm run build
@@ -263,8 +389,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin update-readme-settings-and-more-js
-gh pr create --base main --title "Add update-readme-settings-and-more-js" --body " "
+git push -u origin extend-readmes-on-npm-publishing-and-repo-creation
+gh pr create --base main --title "Add extend-readmes-on-npm-publishing-and-repo-creation" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -277,7 +403,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d update-readme-settings-and-more-js
+git branch -d extend-readmes-on-npm-publishing-and-repo-creation
 ```
 
 ### Publish to NPM
@@ -289,40 +415,10 @@ node scripts/add-version-tag.js
 
 <!-- ........................................................................-->
 
-## Use this helpers
+## Workflows
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
-
-### Debug with Vscode
-
-In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`.
-
-At the `top`, click on the `refresh` icon to show update the tests.
-
-Open a test file (`*.spec.ts`)
-
-Set a breakpoint.
-
-Press `alt` and click on the play button left beside the test.
-
-Execution should stop at the breakpoint.
-
-### Update goldens
-
-In various tests we are creating golden files, that are reference files that
-are compared against the files created in the tests.
-
-```bash
-pnpm updateGoldens
-```
-
-### Test and Build
-
-```bash
-pnpm test
-pnpm build
-```
 
 ### Rename classes
 
@@ -331,6 +427,10 @@ Replace `ClassA` by `ClassB` in the following script and run it:
 ```bash
 node ./scripts/rename-class.js Template ClassB
 ```
+
+### Create a new repo
+
+To create a new repo checkout [create-new-repo.md](doc/workflows/create-new-repo.md)
 
 <!-- ........................................................................-->
 
