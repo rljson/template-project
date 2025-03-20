@@ -42,7 +42,7 @@ found in the LICENSE file in the root of this package.
   - [Create a pull request](#create-a-pull-request)
   - [Delete feature branch](#delete-feature-branch)
   - [Publish to NPM](#publish-to-npm)
-- [Tips and tricks](#tips-and-tricks)
+- [Workflows](#workflows)
   - [Rename classes](#rename-classes)
 - [Troubleshooting](#troubleshooting)
   - [Checkout README.trouble.md](#checkout-readmetroublemd)
@@ -405,7 +405,7 @@ node scripts/add-version-tag.js
 
 <!-- ........................................................................-->
 
-## Tips and tricks
+## Workflows
 
 Read [README.architecture.md](./README.architecture.md) to get an overview
 of the package's architecture.
