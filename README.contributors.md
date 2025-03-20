@@ -305,9 +305,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `my-new-branch` by the name of your new branch
+Replace `fix-readme` by the name of your new branch
 
-Replace `My new branch does something special` by your new commit message and PR title
+Replace `Fix issues in README.contributors.md` by your new commit message and PR title
 
 ### Checkout main
 
@@ -320,7 +320,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b my-new-branch
+git checkout -b fix-readme
 ```
 
 ### Develop and debug with Vscode
@@ -359,7 +359,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "My new branch does something special"
+git commit -m "Fix issues in README.contributors.md"
 ```
 
 ### Update dependencies
@@ -385,8 +385,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin my-new-branch
-gh pr create --base main --title "My new branch does something special" --body " "
+git push -u origin fix-readme
+gh pr create --base main --title "Fix issues in README.contributors.md" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -399,7 +399,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d my-new-branch
+git branch -d fix-readme
 ```
 
 ### Publish to NPM
