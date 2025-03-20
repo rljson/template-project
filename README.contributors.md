@@ -14,7 +14,7 @@ found in the LICENSE file in the root of this package.
   - [GitHub CLI](#github-cli)
   - [Vscode](#vscode)
 - [Get access To GitHub](#get-access-to-github)
-  - [Get an GitHub account](#get-an-github-account)
+  - [Get a GitHub account](#get-a-github-account)
   - [Request organization access](#request-organization-access)
   - [Upload your public SSH key](#upload-your-public-ssh-key)
   - [Login with GitHub CLI](#login-with-github-cli)
@@ -61,10 +61,19 @@ found in the LICENSE file in the root of this package.
 
 ### PNPM
 
+On Windows:
+
+Press `Windows`
+
+Type `Cmd`
+
+Select `Open as administrator`
+
+Execute the the following commands
+
 ```bash
 npm install --global corepack@latest
 corepack enable pnpm
-
 ```
 
 ### GitHub CLI
@@ -87,7 +96,7 @@ Download and install
 
 ## Get access To GitHub
 
-### Get an GitHub account
+### Get a GitHub account
 
 If you have already an GitHub account, skip this step.
 
