@@ -209,9 +209,9 @@ corepack use pnpm
 
 ### Replace in this doc
 
-Replace `update-readme-settings-and-more-js` by the name of your new branch
+Replace `extend-readmes-on-npm-publishing-and-repo-creation` by the name of your new branch
 
-Replace `Add update-readme-settings-and-more-js` by your new commit message and PR title
+Replace `Extend READMEs on NPM publishing and repo creation` by your new commit message and PR title
 
 ### Checkout main
 
@@ -224,7 +224,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b update-readme-settings-and-more-js
+git checkout -b extend-readmes-on-npm-publishing-and-repo-creation
 ```
 
 ### Debug and develop
@@ -237,7 +237,7 @@ If you only have one thing changed, execute
 
 ```bash
 git add .
-git commit -m "Add update-readme-settings-and-more-js"
+git commit -m "Add extend-readmes-on-npm-publishing-and-repo-creation"
 ```
 
 ### Update dependencies
@@ -263,8 +263,8 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin update-readme-settings-and-more-js
-gh pr create --base main --title "Add update-readme-settings-and-more-js" --body " "
+git push -u origin extend-readmes-on-npm-publishing-and-repo-creation
+gh pr create --base main --title "Add extend-readmes-on-npm-publishing-and-repo-creation" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -277,7 +277,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d update-readme-settings-and-more-js
+git branch -d extend-readmes-on-npm-publishing-and-repo-creation
 ```
 
 ### Publish to NPM
