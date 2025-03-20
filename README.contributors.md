@@ -35,9 +35,9 @@ Please checkout [prepare.md](doc/workflows/prepare.md)
 
 ### Define branch and PR name
 
-Replace `fix-readme` by the name of your new branch
+Replace `rename-template-into-template-project` by the name of your new branch
 
-Replace `Fix issues in README.contributors.md` by your new pull request title
+Replace `Rename template into template-project` by your new pull request title
 
 ### Checkout main
 
@@ -50,7 +50,7 @@ git pull
 ### Create a feature branch
 
 ```bash
-git checkout -b fix-readme
+git checkout -b rename-template-into-template-project
 ```
 
 ### Develop and debug with Vscode
@@ -115,7 +115,7 @@ npm run build
 ### Create a pull request
 
 ```bash
-git push -u origin fix-readme
+git push -u origin rename-template-into-template-project
 gh pr create --base main --title "Fix issues in README.contributors.md" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
@@ -129,7 +129,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d fix-readme
+git branch -d rename-template-into-template-project
 ```
 
 ### Publish to NPM
