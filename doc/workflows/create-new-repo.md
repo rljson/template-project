@@ -14,8 +14,8 @@ found in the LICENSE file in the root of this package.
 - [Create repo](#create-repo)
 - [Setup branch rules](#setup-branch-rules)
 - [Require deleting branches after merge](#require-deleting-branches-after-merge)
-- [Rename template into](#rename-template-into)
-- [Rename template into my-new-repo](#rename-template-into-my-new-repo)
+- [Checkout and open the new project](#checkout-and-open-the-new-project)
+- [Rename template-project into my-new-repo](#rename-template-project-into-my-new-repo)
   - [Call rename script](#call-rename-script)
 - [Update goldens](#update-goldens)
 - [Commit the initial state](#commit-the-initial-state)
@@ -38,7 +38,7 @@ Click `New repository`
 
 Below `Repository template` click on the drop down `No template`
 
-Select the template repository `@rljson/template`
+Select the template repository `@rljson/template-project`
 
 Enter a `my-new-repo` as `name`
 
@@ -103,7 +103,7 @@ Apply the following settings:
 - [x] `Allow auto-merge`
 - [x] `Automatically delete head branches`
 
-## Rename template into
+## Checkout and open the new project
 
 Checkout the project
 
@@ -123,15 +123,15 @@ code .
 Prepare a new branch and pull request
 
 ```bash
-git checkout -b rename-template-into-my-new-repo
+git checkout -b rename-classes
 ```
 
-## Rename template into my-new-repo
+## Rename template-project into my-new-repo
 
 ### Call rename script
 
 ```bash
-node scripts/rename-class.js template my-new-repo
+node scripts/rename-class.js template-project my-new-repo
 ```
 
 ## Update goldens
@@ -144,14 +144,14 @@ pnpm updateGoldens
 
 ```bash
 git add .
-git commit -am "Rename template into my-new-repo"
+git commit -am "Rename template-project into my-new-repo"
 ```
 
 ### Create and complete pull request
 
 ```bash
 git push -u origin my-new-repo
-gh pr create --base main --title "Rename template into my-new-repo" --body " "
+gh pr create --base main --title "Rename template-project into my-new-repo" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
 ```
@@ -164,5 +164,5 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d my-new-branch
+git branch -d rename-classes
 ```
