@@ -13,14 +13,15 @@ found in the LICENSE file in the root of this package.
   - [PNPM](#pnpm)
   - [GitHub CLI](#github-cli)
   - [Vscode](#vscode)
-- [Get access To GitHb](#get-access-to-githb)
+- [Get access To GitHub](#get-access-to-github)
   - [Get an GitHub account](#get-an-github-account)
-  - [Become a contributor](#become-a-contributor)
-  - [Upload your SSH key](#upload-your-ssh-key)
+  - [Request organization access](#request-organization-access)
+  - [Upload your public SSH key](#upload-your-public-ssh-key)
   - [Login with GitHub CLI](#login-with-github-cli)
 - [Open the code the first time](#open-the-code-the-first-time)
-  - [Create a dev folder](#create-a-dev-folder)
+  - [Create a dev and rljson folder](#create-a-dev-and-rljson-folder)
   - [Clone code](#clone-code)
+  - [Configure email address and user name](#configure-email-address-and-user-name)
   - [Open template with Vscode](#open-template-with-vscode)
   - [Install recommended extensions](#install-recommended-extensions)
   - [Activate PNPM for the project](#activate-pnpm-for-the-project)
@@ -81,7 +82,7 @@ Visit <https://code.visualstudio.com/download>
 
 Download and install
 
-## Get access To GitHb
+## Get access To GitHub
 
 ### Get an GitHub account
 
@@ -93,10 +94,20 @@ In the top right corner, click `Sign up`
 
 Follow the instructions to get an account
 
-### Become a contributor
+#### Create an SSH key
 
-Ask an Administrator of the <https://github.com/rljson> to perform the
-following steps:
+If you already have created an SSH key, skip this step.
+
+Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
+
+In the Tab bar select either `Mac`, `Windows` or `Linux`
+
+Follow the instructions
+
+### Request organization access
+
+Ask an Administrator of the <https://github.com/rljson> to give you access to
+the Rljson GitHub organization by performing the following steps:
 
 1. Visit <https://github.com/rljson>
 
@@ -112,17 +123,7 @@ following steps:
 
 7. Assign the right role (member, outside contributor etc) to the new user
 
-### Upload your SSH key
-
-#### Create an SSH key
-
-If you already have created an SSH key, skip this step.
-
-Visit <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>
-
-In the Tab bar select either `Mac`, `Windows` or `Linux`
-
-Follow the instructions
+### Upload your public SSH key
 
 ### Login with GitHub CLI
 
@@ -156,10 +157,11 @@ Click `Authorize GitHub`
 
 ## Open the code the first time
 
-### Create a dev folder
+### Create a dev and rljson folder
 
-The following documentation uses `~/dev` as main checkout folder.
-Please replace this folder by your personal dev folder.
+Rljson consists of multiple repos, so we recommend to checkout all rljson
+projects into a `rljson` folder. In this documentation we are using
+`~/dev/rljson` as the development folder.
 
 ```bash
 cd ~/
@@ -174,6 +176,20 @@ cd rljson
 ```bash
 cd ~/dev/rljson
 git clone https://github.com/rljson/template.git
+```
+
+### Configure email address and user name
+
+Replace `first` an `last` by your first and last name and execute:
+
+```bash
+git config --global user.name "first last"
+```
+
+Replace `email` by your email and execute:
+
+```bash
+git config --global user.email "email"
 ```
 
 ### Open template with Vscode
