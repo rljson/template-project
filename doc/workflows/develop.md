@@ -64,7 +64,7 @@ If you have only one change, run
 
 ```bash
 git add .
-git commit -am"Setup GitHub to require code reviews"
+git commit -am"Improve doc"
 ```
 
 ## Increase version
@@ -90,7 +90,7 @@ git rebase main
 
 ```bash
 git push -u origin improve-doc
-gh pr create --base main --title "Setup GitHub to require code reviews" --body " "
+gh pr create --base main --title "Improve doc" --body " "
 gh pr merge --auto --squash
 ```
 
@@ -98,6 +98,12 @@ gh pr merge --auto --squash
 
 Read [setup-code-review.md](./code-review.md) on how to create a
 code review.
+
+## Check pull request status
+
+```bash
+ node scripts/wait-for-pr.js
+```
 
 ## Delete feature branch
 
