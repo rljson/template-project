@@ -34,13 +34,13 @@ git pull
 
 In the _whole document_, replace the following things:
 
-- `improve-doc` by the name of your new branch
+- `improve-doc-3` by the name of your new branch
 - `Improve doc` by your new pull request title
 
 ## Create a feature branch
 
 ```bash
-git checkout -b improve-doc
+git checkout -b improve-doc-3
 ```
 
 ## Update dependencies
@@ -89,7 +89,7 @@ git rebase main
 ## Create a pull request
 
 ```bash
-git push -u origin improve-doc
+git push -u origin improve-doc-3
 gh pr create --base main --title "Improve doc" --body " "
 gh pr merge --auto --squash
 ```
@@ -113,7 +113,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d improve-doc
+git branch -d improve-doc-3
 ```
 
 ## Publish to NPM
