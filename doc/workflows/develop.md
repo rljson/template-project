@@ -35,13 +35,13 @@ git pull
 
 In the _whole document_, replace the following things:
 
-- `setup-github-to-require-code-reviews` by the name of your new branch
-- `Setup GitHub to require code reviews` by your new pull request title
+- `improve-doc` by the name of your new branch
+- `Improve doc` by your new pull request title
 
 ## Create a feature branch
 
 ```bash
-git checkout -b setup-github-to-require-code-reviews
+git checkout -b improve-doc
 ```
 
 ## Update dependencies
@@ -50,39 +50,23 @@ git checkout -b setup-github-to-require-code-reviews
 pnpm update --latest
 ```
 
-## Develop and debug with Vscode
+## Develop & debug
 
-In Vscode: At the `left side bar` click on the `Test tube` icon to open the `Test explorer`
-
-At the `top`, click on the `refresh` icon to show update the tests
-
-Open a test file (`*.spec.ts`)
-
-Set a breakpoint
-
-Press `alt` and click on the play button left beside the test
-
-Execution should stop at the breakpoint
-
-## Update goldens
-
-In various tests test against golden files. To update these, execute:
-
-```bash
-pnpm updateGoldens
-```
-
-In vscode, click the `source control` icon at the left side bar
-
-Click on changed golden files
-
-Review the changes
-
-On unwanted changes, fix the reason and update goldens again
+- [Debug & debug with Vscode](./debug-with-vscode.md)
+- [Update Goldens](./update-goldens.md)
+- [Rename classes](./rename-classes.md)
+- [Super hero tricks](./super-hero.md)
 
 ## Commit
 
 Use Vscode or another git client to commit your changes
+
+If you have only one change, run
+
+```bash
+git add .
+git commit -am"Setup GitHub to require code reviews"
+```
 
 ## Increase version
 
@@ -106,7 +90,7 @@ git rebase main
 ## Create a pull request
 
 ```bash
-git push -u origin setup-github-to-require-code-reviews
+git push -u origin improve-doc
 gh pr create --base main --title "Setup GitHub to require code reviews" --body " "
 gh pr merge --auto --squash
 ```
@@ -124,7 +108,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d setup-github-to-require-code-reviews
+git branch -d improve-doc
 ```
 
 ## Publish to NPM
