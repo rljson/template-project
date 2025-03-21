@@ -73,8 +73,15 @@ Check the following settings:
 - [x] `Restrict deletions`
 - [x] `Require linear history`
 - [x] `Require a pull request before merging`
+  - Click on the dropdown below `Required approvals`
+    - Select `1`
+    - Check the following boxes:
+      - [ ] `Dismiss stale pull request approvals when new commits are pushed`
+      - [ ] `Require review from code owners`
+      - [x] `Require approval of the most recent reviewable push`
+      - [x] `Require conversation resolution before merging`
   - Click on `Allowed merge methods:`
-  - Only select `Squash`
+    - Only select `Squash`
 - [x] `Require status checks to pass`
   - [x] `Require branches to be up to date before merging`
   - Click `Add checks`
