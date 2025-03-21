@@ -19,7 +19,7 @@ found in the LICENSE file in the root of this package.
 - [Run tests and build](#run-tests-and-build)
 - [Rebase main](#rebase-main)
 - [Create a pull request](#create-a-pull-request)
-- [Trigger code review](#trigger-code-review)
+- [Code review](#code-review)
 - [Delete feature branch](#delete-feature-branch)
 - [Publish to NPM](#publish-to-npm)
 
@@ -111,13 +111,10 @@ gh pr create --base main --title "Setup GitHub to require code reviews" --body "
 gh pr merge --auto --squash
 ```
 
-## Trigger code review
+## Code review
 
-```bash
-node scripts/print-pull-request-url.js
-```
-
-Click on the blue link before. Add reviewers and wait until review is done.
+Read [setup-code-review.md](./code-review.md) on how to create a
+code review.
 
 ## Delete feature branch
 
