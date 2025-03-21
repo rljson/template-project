@@ -34,13 +34,13 @@ git pull
 
 In the _whole document_, replace the following things:
 
-- `improve-doc-3` by the name of your new branch
-- `Improve doc` by your new pull request title
+- `improve-publish-script` by the name of your new branch
+- `Improve publish script` by your new pull request title
 
 ## Create a feature branch
 
 ```bash
-git checkout -b improve-doc-3
+git checkout -b improve-publish-script
 ```
 
 ## Update dependencies
@@ -64,7 +64,7 @@ If you have only one change, run
 
 ```bash
 git add .
-git commit -am"Improve doc"
+git commit -am"Improve publish script"
 ```
 
 ## Increase version
@@ -89,8 +89,8 @@ git rebase main
 ## Create a pull request
 
 ```bash
-git push -u origin improve-doc-3
-gh pr create --base main --title "Improve doc" --body " "
+git push -u origin improve-publish-script
+gh pr create --base main --title "Improve publish script" --body " "
 gh pr merge --auto --squash
 ```
 
@@ -113,12 +113,11 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d improve-doc-3
+git branch -d improve-publish-script
 ```
 
 ## Publish to NPM
 
 ```bash
-npm publish --access public
-node scripts/add-version-tag.js
+node scripts/publish-to-npm.js
 ```
