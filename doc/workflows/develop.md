@@ -8,8 +8,8 @@ found in the LICENSE file in the root of this package.
 
 # Ticket workflow
 
-- [Define branch and PR name](#define-branch-and-pr-name)
 - [Checkout main](#checkout-main)
+- [Define branch and PR name](#define-branch-and-pr-name)
 - [Create a feature branch](#create-a-feature-branch)
 - [Update dependencies](#update-dependencies)
 - [Develop and debug with Vscode](#develop-and-debug-with-vscode)
@@ -17,15 +17,11 @@ found in the LICENSE file in the root of this package.
 - [Commit](#commit)
 - [Increase version](#increase-version)
 - [Run tests and build](#run-tests-and-build)
+- [Rebase main](#rebase-main)
 - [Create a pull request](#create-a-pull-request)
+- [Code review](#code-review)
 - [Delete feature branch](#delete-feature-branch)
 - [Publish to NPM](#publish-to-npm)
-
-## Define branch and PR name
-
-Replace `create-doc-workflow-ticket-workflow-md` by the name of your new branch
-
-Replace `Create doc/workflows/ticket-workflow.md` by your new pull request title
 
 ## Checkout main
 
@@ -35,10 +31,17 @@ git fetch
 git pull
 ```
 
+## Define branch and PR name
+
+In the _whole document_, replace the following things:
+
+- `setup-github-to-require-code-reviews` by the name of your new branch
+- `Setup GitHub to require code reviews` by your new pull request title
+
 ## Create a feature branch
 
 ```bash
-git checkout -b create-doc-workflow-ticket-workflow-md
+git checkout -b setup-github-to-require-code-reviews
 ```
 
 ## Update dependencies
@@ -94,14 +97,24 @@ git commit -am"Increase version"
 npm run build
 ```
 
+## Rebase main
+
+```bash
+git rebase main
+```
+
 ## Create a pull request
 
 ```bash
-git push -u origin create-doc-workflow-ticket-workflow-md
-gh pr create --base main --title "Create doc/workflows/ticket-workflow.md" --body " "
+git push -u origin setup-github-to-require-code-reviews
+gh pr create --base main --title "Setup GitHub to require code reviews" --body " "
 gh pr merge --auto --squash
-node ./scripts/wait-for-pr.js
 ```
+
+## Code review
+
+Read [setup-code-review.md](./code-review.md) on how to create a
+code review.
 
 ## Delete feature branch
 
@@ -111,7 +124,7 @@ git checkout main
 git reset --soft origin/main
 git stash -m"PR Aftermath"
 git pull
-git branch -d create-doc-workflow-ticket-workflow-md
+git branch -d setup-github-to-require-code-reviews
 ```
 
 ## Publish to NPM
