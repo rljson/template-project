@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Move shared script code to functions` here and below
+Replace `Add recommended vscode extensions` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Move shared script code to functions"
+node scripts/create-branch.js "Add recommended vscode extensions"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Move shared script code to functions"
+git commit -am"Add recommended vscode extensions"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Move shared script code to functions" --body " "
+gh pr create --base main --title "Add recommended vscode extensions" --body " "
 ```
 
 ## Code review
