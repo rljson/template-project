@@ -58,6 +58,7 @@ try {
   const pushCommand = `git push -u origin ${currentBranch}`;
   console.log(gray(`${pushCommand}`));
   runCommand(pushCommand, { stdio: 'inherit' });
+  console.log(green(`✅ Successfully pushed branch: ${currentBranch}`));
 } catch (err) {
   console.error(red('Error while executing script:'), yellow(err.message));
   process.exit(1);
