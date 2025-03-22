@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add workflow that describes how to apply a cmd to all rljson repos` here and below
+Replace `Add is-clean-repo.js` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add workflow that describes how to apply a cmd to all rljson repos"
+node scripts/create-branch.js "Add is-clean-repo.js"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add workflow that describes how to apply a cmd to all rljson repos"
+git commit -am"Add is-clean-repo.js"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Add workflow that describes how to apply a cmd to all rljson repos" --body " "
+gh pr create --base main --title "Add is-clean-repo.js" --body " "
 ```
 
 ## Code review
