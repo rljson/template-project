@@ -42,7 +42,7 @@ try {
   }
 
   // Get the current Git branch name
-  const currentBranch = execSync('git rev-parse --abbrev-ref HEAD')
+  const currentBranch = runCommand('git rev-parse --abbrev-ref HEAD')
     .toString()
     .trim();
 
@@ -57,7 +57,7 @@ try {
   // Build and run the push command
   const pushCommand = `git push -u origin ${currentBranch}`;
   console.log(gray(`${pushCommand}`));
-  execSync(pushCommand, { stdio: 'inherit' });
+  runCommand(pushCommand, { stdio: 'inherit' });
 } catch (err) {
   console.error(red('Error while executing script:'), yellow(err.message));
   process.exit(1);
