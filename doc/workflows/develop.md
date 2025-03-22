@@ -32,13 +32,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Improve update doc settings and scripts update script` here and below
+Replace `Add list-all-repos.js script` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Improve update doc settings and scripts update script"
+node scripts/create-branch.js "Add list-all-repos.js script"
 ```
 
 ## Update dependencies
@@ -64,7 +64,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Improve update doc settings and scripts update script"
+git commit -am"Add list-all-repos.js script"
 ```
 
 ## Increase version
@@ -92,7 +92,7 @@ In Vscode, press
 
 ```bash
 node scripts/push-branch.js
-gh pr create --base main --title "Improve update doc settings and scripts update script" --body " "
+gh pr create --base main --title "Add list-all-repos.js script" --body " "
 ```
 
 ## Code review

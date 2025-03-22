@@ -13,10 +13,13 @@ const red = (str) => `\x1b[31m${str}\x1b[0m`;
 const blue = (str) => `\x1b[34m${str}\x1b[0m`;
 const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
 const green = (str) => `\x1b[32m${str}\x1b[0m`;
+const gray = (str) => `\x1b[90m${str}\x1b[0m`;
 
 // Execute a shell command and return trimmed output
-function runCommand(command, silent = true) {
-  console.log(gray(`# ${command}`));
+function runCommand(command, silent = true, logCommand = true) {
+  if (logCommand) {
+    console.log(gray(`# ${command}`));
+  }
   return execSync(command, {
     encoding: 'utf-8',
     stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
@@ -40,9 +43,11 @@ function getPRUrl() {
 
 function getPRStatus() {
   try {
-    const jsonString = runCommand('gh pr view --json state', {
-      encoding: 'utf-8',
-    }).trim();
+    const jsonString = runCommand(
+      'gh pr view --json state',
+      true,
+      false,
+    ).trim();
 
     const jsonParsed = JSON.parse(jsonString);
     return jsonParsed.state;
@@ -56,9 +61,8 @@ async function checkIfPipelineHasFailed() {
   try {
     const json = runCommand(
       'gh run list --repo rljson/template-project --limit 1 --json status,conclusion',
-      {
-        encoding: 'utf-8',
-      },
+      true,
+      false,
     ).trim();
 
     const jsonParsed = JSON.parse(json);
