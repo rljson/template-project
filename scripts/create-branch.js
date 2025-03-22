@@ -7,7 +7,7 @@
  */
 
 import { execSync } from 'child_process';
-import { blue, gray, red } from './functions/colors.js';
+import { blue, gray, green, red } from './functions/colors.js';
 
 function runCommand(command, silent = true) {
   console.log(gray(`# ${command}`));
