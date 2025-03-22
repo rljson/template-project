@@ -90,18 +90,17 @@ git rebase main
 ```bash
 node scripts/push-branch.js
 gh pr create --base main --title "Add create-branch-script.js" --body " "
-gh pr merge --auto --squash
 ```
 
 ## Code review
 
-Read [setup-code-review.md](./code-review.md) on how to create a
-code review.
+You need a code review? Read [code-review.md](./code-review.md).
 
-## Check pull request status
+If you don't require a code review, auto merge the branch
 
 ```bash
- node scripts/wait-for-pr.js
+gh pr merge --auto --squash
+node scripts/wait-for-pr.js
 ```
 
 ## Delete feature branch
