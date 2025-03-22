@@ -29,13 +29,28 @@ function hasUncommittedChanges() {
 // Check for unpushed commits
 function hasUnpushedCommits(branch) {
   try {
-    // Check if upstream is set
     runCommand(`git rev-parse --abbrev-ref ${branch}@{u}`);
     const ahead = runCommand(`git rev-list --count ${branch}@{u}..${branch}`);
     return parseInt(ahead, 10) > 0;
   } catch {
-    // No upstream branch set
-    return true;
+    return true; // No upstream
+  }
+}
+
+// Try a test merge into main and check if it introduces changes
+function isBranchEffectivelyMerged(featureBranch) {
+  try {
+    // Merge with no commit to see if anything changes
+    runCommand(`git merge --no-commit --no-ff ${featureBranch}`);
+    const changed = hasUncommittedChanges();
+
+    // Abort the test merge
+    runCommand('git merge --abort');
+    return !changed;
+  } catch {
+    // Conflicts or merge problems = not merged
+    runCommand('git merge --abort'); // Ensure clean state
+    return false;
   }
 }
 
@@ -47,7 +62,6 @@ try {
     process.exit(0);
   }
 
-  // Abort if working directory is dirty
   if (hasUncommittedChanges()) {
     console.error(red('❌ You have uncommitted changes.'));
     console.error(
@@ -56,7 +70,6 @@ try {
     process.exit(1);
   }
 
-  // Abort if branch has unpushed commits
   if (hasUnpushedCommits(currentBranch)) {
     console.error(red('❌ You have unpushed commits.'));
     console.error(yellow('Please push your branch before continuing.'));
@@ -65,41 +78,40 @@ try {
 
   console.log(
     gray(
-      `Checking if branch '${currentBranch}' is fully merged into 'main'...`,
+      `Checking if branch '${currentBranch}' is already integrated into 'main' via squash...`,
     ),
   );
 
-  // Make sure we have the latest info
   runCommand('git fetch');
-
-  // Switch to main branch
   runCommand('git checkout main');
+  console.log(gray("Switched to 'main' branch."));
 
-  // Check if current branch is fully merged
-  const mergedBranches = runCommand('git branch --merged main')
-    .split('\n')
-    .map((b) => b.replace('*', '').trim());
-
-  const isMerged = mergedBranches.includes(currentBranch);
+  const isMerged = isBranchEffectivelyMerged(currentBranch);
 
   if (isMerged) {
     runCommand(`git branch -d ${currentBranch}`);
     console.log(
-      green(`✅ Branch '${currentBranch}' was merged and has been deleted.`),
+      green(
+        `✅ Branch '${currentBranch}' was already integrated and has been deleted.`,
+      ),
     );
   } else {
-    console.error(red(`❌ Branch '${currentBranch}' is not fully merged.`));
+    console.error(
+      red(`❌ Branch '${currentBranch}' is not fully integrated into 'main'.`),
+    );
+    console.log(
+      yellow(`Please merge`),
+      blue(currentBranch),
+      yellow(`into main and try again.`),
+    );
 
-    const message = [
-      yellow(`Please merge ${currentBranch} to main and try again.`),
-    ];
-
-    console.log(message.join(' '));
-
-    // Switch back to the feature branch
     runCommand(`git checkout ${currentBranch}`);
+    console.log(gray(`Switched back to '${currentBranch}'.`));
   }
 } catch (error) {
   console.error(red(`Error: ${error.message}`));
+  try {
+    runCommand('git merge --abort'); // Just in case
+  } catch {}
   process.exit(1);
 }

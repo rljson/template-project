@@ -9,7 +9,7 @@ found in the LICENSE file in the root of this package.
 # Ticket workflow
 
 - [Checkout main](#checkout-main)
-- [Define branch and PR name](#define-branch-and-pr-name)
+- [Set pull request title](#set-pull-request-title)
 - [Create a feature branch](#create-a-feature-branch)
 - [Update dependencies](#update-dependencies)
 - [Develop \& debug](#develop--debug)
@@ -19,7 +19,7 @@ found in the LICENSE file in the root of this package.
 - [Rebase main](#rebase-main)
 - [Create a pull request](#create-a-pull-request)
 - [Code review](#code-review)
-- [Delete feature branch](#delete-feature-branch)
+- [Checkout main and delete feature branch](#checkout-main-and-delete-feature-branch)
 - [Publish to NPM](#publish-to-npm)
 
 ## Checkout main
@@ -30,16 +30,15 @@ git fetch
 git pull
 ```
 
-## Define branch and PR name
+## Set pull request title
 
-In the _whole document_, replace the following things:
-
-- `Add create-branch-script.js` by your new pull request title
+Replace `Improve delete-feature-branch.js` here and below
+by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add create branch-script.js"
+node scripts/create-branch.js "Improve delete-feature-branch.js"
 ```
 
 ## Update dependencies
@@ -61,9 +60,11 @@ Use Vscode or another git client to commit your changes
 
 If you have only one change, run
 
+In Vscode, press
+
 ```bash
 git add .
-git commit -am"Add create-branch-script.js"
+git commit -am"Improve delete-feature-branch.js"
 ```
 
 ## Increase version
@@ -87,9 +88,11 @@ git rebase main
 
 ## Create a pull request
 
+In Vscode, press
+
 ```bash
 node scripts/push-branch.js
-gh pr create --base main --title "Add create-branch-script.js" --body " "
+gh pr create --base main --title "Improve delete-feature-branch.js" --body " "
 ```
 
 ## Code review
