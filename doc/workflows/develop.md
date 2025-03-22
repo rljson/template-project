@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add a script that checks out all rljson repos` here and below
+Replace `Add run-with-all-repos.js` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add a script that checks out all rljson repos"
+node scripts/create-branch.js "Add run-with-all-repos.js"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add a script that checks out all rljson repos"
+git commit -am"Add run-with-all-repos.js"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Add a script that checks out all rljson repos" --body " "
+gh pr create --base main --title "Add run-with-all-repos.js" --body " "
 ```
 
 ## Code review
