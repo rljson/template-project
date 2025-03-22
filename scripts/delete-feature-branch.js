@@ -6,18 +6,8 @@
  * found in the LICENSE file in the root of this package.
  */
 
-import { execSync } from 'child_process';
-
 import { gray, green, lightGray, red, yellow } from './functions/colors.js';
-
-// Execute a shell command and return trimmed output
-function runCommand(command, silent = true) {
-  console.log(gray(`# ${command}`));
-  return execSync(command, {
-    encoding: 'utf-8',
-    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
-  }).trim();
-}
+import { runCommand } from './functions/run-command.js';
 
 // Check for uncommitted changes
 function hasUncommittedChanges() {

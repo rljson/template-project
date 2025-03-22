@@ -7,29 +7,14 @@
  */
 
 // publish-and-tag.js
-import { exec } from 'child_process';
-
-function runCommand(command, options = {}) {
-  return new Promise((resolve, reject) => {
-    const proc = exec(command, options, (error, stdout, stderr) => {
-      if (error) {
-        reject({ error, stdout, stderr });
-      } else {
-        resolve({ stdout, stderr });
-      }
-    });
-
-    proc.stdout.pipe(process.stdout);
-    proc.stderr.pipe(process.stderr);
-  });
-}
+import { runCommand } from './functions/run-command';
 
 (async () => {
   try {
     console.log('📦 Publishing package...');
-    await runCommand('npm publish --access public');
+    runCommand('npm publish --access public');
     console.log('✅ Publish successful. Adding version tag...');
-    await runCommand('node scripts/add-version-tag.js');
+    runCommand('node scripts/add-version-tag.js');
     console.log('🏷️ Version tag added.');
   } catch (e) {
     console.error('❌ Operation failed:', e.error?.message || e);

@@ -6,25 +6,12 @@
  * found in the LICENSE file in the root of this package.
  */
 
-import { execSync } from 'child_process';
-import { blue, gray, green, red, yellow } from './functions/colors.js';
-
-// Execute a shell command and return trimmed output
-function runCommand(command, silent = true, logCommand = true) {
-  if (logCommand) {
-    console.log(gray(`# ${command}`));
-  }
-  return execSync(command, {
-    encoding: 'utf-8',
-    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
-  }).trim();
-}
+import { blue, green, red, yellow } from './functions/colors.js';
+import { runCommand } from './functions/run-command.js';
 
 function getPRUrl() {
   try {
-    const json = runCommand('gh pr view --json url', {
-      encoding: 'utf-8',
-    }).trim();
+    const json = runCommand('gh pr view --json url').trim();
 
     const parsed = JSON.parse(json);
     const url = parsed.url;

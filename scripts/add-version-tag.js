@@ -7,31 +7,11 @@
  */
 
 import { execSync } from 'child_process';
-import { promises as fs } from 'fs';
 import { gray, green, red } from './functions/colors.js';
+import { currentBranch } from './functions/current-branch.js';
+import { isMainUpToDate } from './functions/is-main-up-to-date.js';
 
-const getCurrentBranch = () => {
-  return execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
-};
-
-const isMainUpToDate = () => {
-  try {
-    execSync('git fetch origin main');
-    const localHash = execSync('git rev-parse main').toString().trim();
-    const remoteHash = execSync('git rev-parse origin/main').toString().trim();
-    return localHash === remoteHash;
-  } catch (error) {
-    console.error(red('Error checking branch status:'), error);
-    return false;
-  }
-};
-
-const getVersion = async () => {
-  const packageJson = JSON.parse(await fs.readFile('package.json', 'utf8'));
-  return packageJson.version;
-};
-
-const createTag = (version) => {
+const createVersionTag = (version) => {
   try {
     execSync(`git tag v${version}`);
     execSync(`git push origin v${version}`);
@@ -45,7 +25,7 @@ const createTag = (version) => {
 };
 
 const main = async () => {
-  const branch = getCurrentBranch();
+  const branch = currentBranch();
   if (branch !== 'main') {
     console.error(red('Error: You must be on the main branch.'));
     process.exit(1);
@@ -59,7 +39,7 @@ const main = async () => {
   }
 
   const version = await getVersion();
-  createTag(version);
+  createVersionTag(version);
 };
 
 main().catch(console.error);
