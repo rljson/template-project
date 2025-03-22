@@ -103,15 +103,10 @@ gh pr merge --auto --squash
 node scripts/wait-for-pr.js
 ```
 
-## Delete feature branch
+## Checkout main and delete feature branch
 
 ```bash
-git fetch
-git checkout main
-git reset --soft origin/main
-git stash -m"PR Aftermath"
-git pull
-git branch -d add-update-doc-and-scripts-js
+node scripts/delete-feature-branch.js
 ```
 
 ## Publish to NPM
