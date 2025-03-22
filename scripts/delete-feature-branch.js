@@ -16,8 +16,12 @@ const green = (str) => `\x1b[32m${str}\x1b[0m`;
 const blue = (str) => `\x1b[34m${str}\x1b[0m`;
 
 // Execute a shell command and return trimmed output
-function runCommand(command) {
-  return execSync(command, { encoding: 'utf-8' }).trim();
+function runCommand(command, silent = true) {
+  console.log(gray(`${command}`));
+  return execSync(command, {
+    encoding: 'utf-8',
+    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
+  }).trim();
 }
 
 // Check for uncommitted changes
@@ -78,22 +82,14 @@ try {
   runCommand('git fetch');
   runCommand('git checkout main');
   runCommand('git pull origin main');
-  console.log(gray("Switched to and updated 'main'."));
+  console.log(gray("Switched to 'main'."));
 
-  console.log(
-    gray(
-      `Checking if branch '${currentBranch}' is already integrated into 'main'...`,
-    ),
-  );
+  console.log(gray('was feature branch merged?'));
   const isMerged = isBranchEffectivelyMerged(currentBranch);
 
   if (isMerged) {
     runCommand(`git branch -d ${currentBranch}`);
-    console.log(
-      green(
-        `✅ Branch '${currentBranch}' was already integrated and has been deleted.`,
-      ),
-    );
+    console.log(green(`✅ Branch '${currentBranch}' has been deleted.`));
   } else {
     console.error(
       red(`❌ Branch '${currentBranch}' is not fully integrated into 'main'.`),
