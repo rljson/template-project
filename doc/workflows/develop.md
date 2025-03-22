@@ -17,6 +17,7 @@ found in the LICENSE file in the root of this package.
 - [Increase version](#increase-version)
 - [Run tests and build](#run-tests-and-build)
 - [Rebase main](#rebase-main)
+- [Push changes](#push-changes)
 - [Create a pull request](#create-a-pull-request)
 - [Code review](#code-review)
 - [Checkout main and delete feature branch](#checkout-main-and-delete-feature-branch)
@@ -32,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add list-all-repos.js script` here and below
+Replace `Add a script that checks out all rljson repos` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add list-all-repos.js script"
+node scripts/create-branch.js "Add a script that checks out all rljson repos"
 ```
 
 ## Update dependencies
@@ -64,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add list-all-repos.js script"
+git commit -am"Add a script that checks out all rljson repos"
 ```
 
 ## Increase version
@@ -86,13 +87,16 @@ npm run build
 git rebase main
 ```
 
-## Create a pull request
-
-In Vscode, press
+## Push changes
 
 ```bash
 node scripts/push-branch.js
-gh pr create --base main --title "Add list-all-repos.js script" --body " "
+```
+
+## Create a pull request
+
+```bash
+gh pr create --base main --title "Add a script that checks out all rljson repos" --body " "
 ```
 
 ## Code review
