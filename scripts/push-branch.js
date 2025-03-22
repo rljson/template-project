@@ -14,15 +14,25 @@
 
 import { execSync } from 'child_process';
 
+// Execute a shell command and return trimmed output
+function runCommand(command, silent = true) {
+  console.log(gray(`# ${command}`));
+  return execSync(command, {
+    encoding: 'utf-8',
+    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
+  }).trim();
+}
+
 // Simple color functions using ANSI escape codes
 const red = (str) => `\x1b[31m${str}\x1b[0m`;
 const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
 const blue = (str) => `\x1b[34m${str}\x1b[0m`;
 const gray = (str) => `\x1b[90m${str}\x1b[0m`;
+const green = (str) => `\x1b[32m${str}\x1b[0m`;
 
 try {
   // Check for uncommitted changes
-  const status = execSync('git status --porcelain').toString().trim();
+  const status = runCommand('git status --porcelain').toString().trim();
   if (status) {
     console.error(red('Uncommitted changes detected.'));
 
@@ -33,7 +43,7 @@ try {
   }
 
   // Get the current Git branch name
-  const currentBranch = execSync('git rev-parse --abbrev-ref HEAD')
+  const currentBranch = runCommand('git rev-parse --abbrev-ref HEAD')
     .toString()
     .trim();
 
@@ -48,7 +58,8 @@ try {
   // Build and run the push command
   const pushCommand = `git push -u origin ${currentBranch}`;
   console.log(gray(`${pushCommand}`));
-  execSync(pushCommand, { stdio: 'inherit' });
+  runCommand(pushCommand, { stdio: 'inherit' });
+  console.log(green(`✅ Successfully pushed branch: ${currentBranch}`));
 } catch (err) {
   console.error(red('Error while executing script:'), yellow(err.message));
   process.exit(1);
