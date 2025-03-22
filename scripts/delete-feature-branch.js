@@ -33,23 +33,21 @@ function hasUnpushedCommits(branch) {
     const ahead = runCommand(`git rev-list --count ${branch}@{u}..${branch}`);
     return parseInt(ahead, 10) > 0;
   } catch {
-    return true; // No upstream
+    return true;
   }
 }
 
 // Try a test merge into main and check if it introduces changes
 function isBranchEffectivelyMerged(featureBranch) {
   try {
-    // Merge with no commit to see if anything changes
     runCommand(`git merge --no-commit --no-ff ${featureBranch}`);
     const changed = hasUncommittedChanges();
-
-    // Abort the test merge
     runCommand('git merge --abort');
     return !changed;
   } catch {
-    // Conflicts or merge problems = not merged
-    runCommand('git merge --abort'); // Ensure clean state
+    try {
+      runCommand('git merge --abort');
+    } catch {}
     return false;
   }
 }
@@ -76,16 +74,17 @@ try {
     process.exit(1);
   }
 
-  console.log(
-    gray(
-      `Checking if branch '${currentBranch}' is already integrated into 'main' via squash...`,
-    ),
-  );
-
+  console.log(gray(`Fetching and pulling latest 'main'...`));
   runCommand('git fetch');
   runCommand('git checkout main');
-  console.log(gray("Switched to 'main' branch."));
+  runCommand('git pull origin main');
+  console.log(gray("Switched to and updated 'main'."));
 
+  console.log(
+    gray(
+      `Checking if branch '${currentBranch}' is already integrated into 'main'...`,
+    ),
+  );
   const isMerged = isBranchEffectivelyMerged(currentBranch);
 
   if (isMerged) {
@@ -100,18 +99,17 @@ try {
       red(`❌ Branch '${currentBranch}' is not fully integrated into 'main'.`),
     );
     console.log(
-      yellow(`Please merge`),
+      yellow(`Please squash-merge`),
       blue(currentBranch),
       yellow(`into main and try again.`),
     );
-
     runCommand(`git checkout ${currentBranch}`);
     console.log(gray(`Switched back to '${currentBranch}'.`));
   }
 } catch (error) {
   console.error(red(`Error: ${error.message}`));
   try {
-    runCommand('git merge --abort'); // Just in case
+    runCommand('git merge --abort');
   } catch {}
   process.exit(1);
 }
