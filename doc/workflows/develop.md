@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add is-clean-repo.js` here and below
+Replace `Update run-in-all-repos workflow` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add is-clean-repo.js"
+node scripts/create-branch.js "Update run-in-all-repos workflow"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add is-clean-repo.js"
+git commit -am"Update run-in-all-repos workflow"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Add is-clean-repo.js" --body " "
+gh pr create --base main --title "Update run-in-all-repos workflow" --body " "
 ```
 
 ## Code review
