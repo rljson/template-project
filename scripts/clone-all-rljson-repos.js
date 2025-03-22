@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ===== CONFIGURATION =====
-const ORG_NAME = 'rljson'; // Replace with your GitHub org
+const orgName = 'rljson'; // Replace with your GitHub org
 // ==========================
 
 /**
@@ -80,7 +80,7 @@ function cloneRepos(repos, targetDir) {
 // ==== Main ====
 try {
   const CLONE_DIR = determineCloneDir();
-  const repos = fetchRepos(ORG_NAME);
+  const repos = fetchRepos(orgName);
   cloneRepos(repos, CLONE_DIR);
 } catch (err) {
   console.error('❌ Error:', err.message);
