@@ -14,6 +14,15 @@
 
 import { execSync } from 'child_process';
 
+// Execute a shell command and return trimmed output
+function runCommand(command, silent = true) {
+  console.log(gray(`# ${command}`));
+  return execSync(command, {
+    encoding: 'utf-8',
+    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
+  }).trim();
+}
+
 // Simple color functions using ANSI escape codes
 const red = (str) => `\x1b[31m${str}\x1b[0m`;
 const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
@@ -22,7 +31,7 @@ const gray = (str) => `\x1b[90m${str}\x1b[0m`;
 
 try {
   // Check for uncommitted changes
-  const status = execSync('git status --porcelain').toString().trim();
+  const status = runCommand('git status --porcelain').toString().trim();
   if (status) {
     console.error(red('Uncommitted changes detected.'));
 

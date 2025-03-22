@@ -14,9 +14,18 @@ const blue = (str) => `\x1b[34m${str}\x1b[0m`;
 const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
 const green = (str) => `\x1b[32m${str}\x1b[0m`;
 
+// Execute a shell command and return trimmed output
+function runCommand(command, silent = true) {
+  console.log(gray(`# ${command}`));
+  return execSync(command, {
+    encoding: 'utf-8',
+    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
+  }).trim();
+}
+
 function getPRUrl() {
   try {
-    const json = execSync('gh pr view --json url', {
+    const json = runCommand('gh pr view --json url', {
       encoding: 'utf-8',
     }).trim();
 
@@ -31,7 +40,7 @@ function getPRUrl() {
 
 function getPRStatus() {
   try {
-    const jsonString = execSync('gh pr view --json state', {
+    const jsonString = runCommand('gh pr view --json state', {
       encoding: 'utf-8',
     }).trim();
 
@@ -45,7 +54,7 @@ function getPRStatus() {
 
 async function checkIfPipelineHasFailed() {
   try {
-    const json = execSync(
+    const json = runCommand(
       'gh run list --repo rljson/template-project --limit 1 --json status,conclusion',
       {
         encoding: 'utf-8',
