@@ -16,13 +16,14 @@ import path from 'path';
 const files = [
   'doc',
   'scripts',
-  '.vscode/settings.json',
+  '.vscode',
   '.gitignore',
   '.npmrc',
   '.npmignore',
   '.prettierignore',
   '.prettierrc',
   'README.contributors.md',
+  '.github/workflows/run-tests.yml',
 ];
 
 const templateRepo = 'https://github.com/rljson/template-' + 'project.git';
