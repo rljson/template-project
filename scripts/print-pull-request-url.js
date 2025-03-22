@@ -8,9 +8,7 @@
 
 import { execSync } from 'child_process';
 
-// Define red, blue, yellow methods
-const blue = (str) => `\x1b[34m${str}\x1b[0m`;
-const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
+import { blue, yellow } from './functions/colors.js';
 
 function getPullRequestUrl() {
   try {

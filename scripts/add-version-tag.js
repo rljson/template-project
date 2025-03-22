@@ -8,13 +8,7 @@
 
 import { execSync } from 'child_process';
 import { promises as fs } from 'fs';
-
-// Define red, blue, yellow methods
-const red = (str) => `\x1b[31m${str}\x1b[0m`;
-const blue = (str) => `\x1b[34m${str}\x1b[0m`;
-const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
-const green = (str) => `\x1b[32m${str}\x1b[0m`;
-const gray = (str) => `\x1b[90m${str}\x1b[0m`;
+import { gray, green, red } from './functions/colors.js';
 
 const getCurrentBranch = () => {
   return execSync('git rev-parse --abbrev-ref HEAD').toString().trim();

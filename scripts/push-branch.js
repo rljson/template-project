@@ -14,6 +14,8 @@
 
 import { execSync } from 'child_process';
 
+import { blue, gray, green, red, yellow } from './functions/colors.js';
+
 // Execute a shell command and return trimmed output
 function runCommand(command, silent = true) {
   console.log(gray(`# ${command}`));
@@ -22,13 +24,6 @@ function runCommand(command, silent = true) {
     stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
   }).trim();
 }
-
-// Simple color functions using ANSI escape codes
-const red = (str) => `\x1b[31m${str}\x1b[0m`;
-const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
-const blue = (str) => `\x1b[34m${str}\x1b[0m`;
-const gray = (str) => `\x1b[90m${str}\x1b[0m`;
-const green = (str) => `\x1b[32m${str}\x1b[0m`;
 
 try {
   // Check for uncommitted changes

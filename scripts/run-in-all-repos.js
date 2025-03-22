@@ -12,13 +12,9 @@ import { readdir } from 'fs/promises';
 import { join } from 'path';
 import { cwd } from 'process';
 import { promisify } from 'util';
+import { blue, green, red, yellow } from './functions/colors.js';
 
 const execAsync = promisify(exec);
-
-const green = (str) => `\x1b[32m${str}\x1b[0m`;
-const blue = (str) => `\x1b[34m${str}\x1b[0m`;
-const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
-const red = (str) => `\x1b[31m${str}\x1b[0m`;
 
 // Get the shell command from command-line arguments
 const args = process.argv;

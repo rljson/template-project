@@ -7,10 +7,7 @@
  */
 
 import { execSync } from 'child_process';
-
-const gray = (str) => `\x1b[90m${str}\x1b[0m`;
-const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
-const blue = (str) => `\x1b[34m${str}\x1b[0m`;
+import { blue, gray, yellow } from './functions/colors.js';
 
 function runCommand(command, silent = true) {
   console.log(gray(`# ${command}`));
