@@ -10,8 +10,15 @@
 // template-project
 import { execSync } from 'child_process';
 import fs from 'fs';
-import os from 'os';
 import path from 'path';
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { blue, red } from './functions/colors.js';
+import { isCleanRepo } from './functions/is-clean-repo.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const files = [
   'doc',
@@ -26,17 +33,27 @@ const files = [
   '.github/workflows/run-tests.yml',
 ];
 
-const templateRepo = 'https://github.com/rljson/template-' + 'project.git';
-const tempDir = path.join(os.tmpdir(), 'template-project');
+const templateRepo = 'https://github.com/rljson/template-project.git';
+const localRepoPath = path.resolve(__dirname, '../../template-project');
 
-function checkOutTemplateProject() {
-  if (fs.existsSync(tempDir)) {
-    fs.rmSync(tempDir, { recursive: true, force: true });
+function ensureTemplateRepoUpdated() {
+  if (fs.existsSync(localRepoPath)) {
+    if (!isCleanRepo(localRepoPath)) {
+      console.error(blue('../template-project') + red(' is not clean. '));
+      console.log('Please commit or stash your changes.');
+      exit(1);
+    }
+
+    console.log('Updating existing template-project...');
+    execSync('git fetch', { cwd: localRepoPath, stdio: 'inherit' });
+    execSync('git pull', { cwd: localRepoPath, stdio: 'inherit' });
+  } else {
+    console.log('Cloning template-project into ../');
+    execSync(`git clone ${templateRepo} "${localRepoPath}"`, {
+      stdio: 'inherit',
+    });
   }
-
-  console.log('Cloning template project...');
-  execSync(`git clone ${templateRepo} "${tempDir}"`, { stdio: 'inherit' });
-  console.log('Template project cloned to:', tempDir);
+  console.log('Template project is ready at:', localRepoPath);
 }
 
 function copyRecursive(src, dest) {
@@ -56,7 +73,7 @@ function copyRecursive(src, dest) {
 
 function copyFiles() {
   for (const file of files) {
-    const src = path.join(tempDir, file);
+    const src = path.join(localRepoPath, file);
     const dest = path.join(process.cwd(), file);
 
     if (fs.existsSync(src)) {
@@ -69,12 +86,10 @@ function copyFiles() {
 }
 
 function replaceTemplateProject() {
-  // Replace template-project with the actual project name from package.json
   const pkgFile = path.join(process.cwd(), 'package.json');
   const pkg = JSON.parse(fs.readFileSync(pkgFile, 'utf8'));
   const projectName = pkg.name.replace('@rljson/', '');
 
-  // Replace in the following files
   const replaceFiles = ['doc/workflows/prepare.md', 'doc/workflows/tools.md'];
 
   for (const file of replaceFiles) {
@@ -83,7 +98,7 @@ function replaceTemplateProject() {
       let content = fs.readFileSync(filePath, 'utf8');
       content = content.replace(/template-project/g, projectName);
       fs.writeFileSync(filePath, content);
-      console.log('Replaced:', file);
+      console.log('Replaced in:', file);
     } else {
       console.warn('Not found:', file);
     }
@@ -92,7 +107,7 @@ function replaceTemplateProject() {
 
 function main() {
   try {
-    checkOutTemplateProject();
+    ensureTemplateRepoUpdated();
     copyFiles();
     replaceTemplateProject();
     console.log('Done.');
