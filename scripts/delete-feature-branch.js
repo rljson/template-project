@@ -96,12 +96,10 @@ try {
     console.log(green(`✅ Branch '${currentBranch}' has been deleted.`));
   } else {
     console.error(
-      red(`❌ Branch '${currentBranch}' is not fully integrated into 'main'.`),
+      red(`❌ Branch '${currentBranch}' is not merged into 'main'.`),
     );
     console.log(
-      yellow(`Please squash-merge`),
-      blue(currentBranch),
-      yellow(`into main and try again.`),
+      yellow(`Please (create and) merge a pull request and try again.`),
     );
     runCommand(`git checkout ${currentBranch}`);
     console.log(gray(`Switched back to '${currentBranch}'.`));

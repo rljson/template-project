@@ -8,11 +8,17 @@
 
 import { execSync } from 'child_process';
 
-const red = (str) => `\x1b[31m${str}\x1b[0m`;
 const gray = (str) => `\x1b[90m${str}\x1b[0m`;
 const yellow = (str) => `\x1b[33m${str}\x1b[0m`;
-const green = (str) => `\x1b[32m${str}\x1b[0m`;
 const blue = (str) => `\x1b[34m${str}\x1b[0m`;
+
+function runCommand(command, silent = true) {
+  console.log(gray(`# ${command}`));
+  return execSync(command, {
+    encoding: 'utf-8',
+    stdio: silent ? ['pipe', 'pipe', 'pipe'] : undefined,
+  }).trim();
+}
 
 // Converts a string to kebab-case
 function toKebabCase(str) {
@@ -35,7 +41,7 @@ const kebabCaseName = toKebabCase(input);
 
 try {
   // Create new Git branch
-  execSync(`git checkout -b ${kebabCaseName}`, { stdio: 'inherit' });
+  runCommand(`git checkout -b ${kebabCaseName}`);
   console.log('✅ ' + yellow('Created new branch: ') + blue(kebabCaseName));
 } catch (error) {
   console.error('❌ Failed to create branch:', error.message);
