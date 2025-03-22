@@ -7,7 +7,7 @@
  */
 
 import { exec } from 'child_process';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { readdir } from 'fs/promises';
 import { join } from 'path';
 import { cwd } from 'process';
@@ -37,6 +37,12 @@ if (args.length < 4) {
 const dir = args[2];
 const commandParts = args.slice(3);
 const command = [];
+
+// Exit if dir cannot be found on file system
+if (!existsSync(dir)) {
+  console.error(red('❌ Directory ') + blue(dir) + red(' does not exist.'));
+  process.exit(1);
+}
 
 for (const part of commandParts) {
   if (part.includes(' ')) {
