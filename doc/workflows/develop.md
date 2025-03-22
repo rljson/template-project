@@ -32,13 +32,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Improve delete-feature-branch.js` here and below
+Replace `Improve update doc settings and scripts update script` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Improve delete-feature-branch.js"
+node scripts/create-branch.js "Improve update doc settings and scripts update script"
 ```
 
 ## Update dependencies
@@ -64,7 +64,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Improve delete-feature-branch.js"
+git commit -am"Improve update doc settings and scripts update script"
 ```
 
 ## Increase version
@@ -92,7 +92,7 @@ In Vscode, press
 
 ```bash
 node scripts/push-branch.js
-gh pr create --base main --title "Improve delete-feature-branch.js" --body " "
+gh pr create --base main --title "Improve update doc settings and scripts update script" --body " "
 ```
 
 ## Code review
