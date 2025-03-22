@@ -39,16 +39,18 @@ const localRepoPath = path.resolve(__dirname, '../../template-project');
 const mustBeClean = false;
 
 function ensureTemplateRepoUpdated() {
-  if (fs.existsSync(localRepoPath) && mustBeClean) {
-    if (!isCleanRepo(localRepoPath)) {
-      console.error(blue('../template-project') + red(' is not clean. '));
-      console.log(yellow('Please commit or stash your changes.'));
-      process.exit(1);
-    }
+  if (fs.existsSync(localRepoPath)) {
+    if (mustBeClean) {
+      if (isCleanRepo(localRepoPath)) {
+        console.error(blue('../template-project') + red(' is not clean. '));
+        console.log(yellow('Please commit or stash your changes.'));
+        process.exit(1);
+      }
 
-    console.log(gray('Updating existing template-project...'));
-    execSync('git fetch', { cwd: localRepoPath, stdio: 'inherit' });
-    execSync('git pull', { cwd: localRepoPath, stdio: 'inherit' });
+      console.log(gray('Updating existing template-project...'));
+      execSync('git fetch', { cwd: localRepoPath, stdio: 'inherit' });
+      execSync('git pull', { cwd: localRepoPath, stdio: 'inherit' });
+    }
   } else {
     console.log(gray('Cloning template-project into ../'));
     execSync(`git clone ${templateRepo} "${localRepoPath}"`, {

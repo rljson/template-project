@@ -20,12 +20,11 @@ const execAsync = promisify(exec);
 const args = process.argv;
 
 if (args.length < 4) {
-  console.error(red('❌ Add workspace dir and path to the command to run.'));
-  console.error('Example:');
+  const usage = red('Usage:');
   const scriptName = green('node run-with-all-repos.js');
-  const path = yellow('./');
-  const command = blue('ls -la');
-  console.log(`  ${scriptName} ${path} ${command}`);
+  const path = yellow('path');
+  const command = blue('command');
+  console.log(`${usage} ${scriptName} ${path} ${command}`);
 
   process.exit(1);
 }

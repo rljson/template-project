@@ -8,7 +8,8 @@
 
 import { execSync } from 'child_process';
 import { gray, green, red } from './functions/colors.js';
-import { currentBranch } from './functions/current-branch.js';
+import { getVersion } from './functions/get-version.js';
+import { isCleanRepo } from './functions/is-clean-repo.js';
 import { isMainUpToDate } from './functions/is-main-up-to-date.js';
 
 const createVersionTag = (version) => {
@@ -25,16 +26,13 @@ const createVersionTag = (version) => {
 };
 
 const main = async () => {
-  const branch = currentBranch();
-  if (branch !== 'main') {
-    console.error(red('Error: You must be on the main branch.'));
+  if (!isCleanRepo()) {
+    console.error(red('You must be on a clean main branch.'));
     process.exit(1);
   }
 
   if (!isMainUpToDate()) {
-    console.error(
-      red('Error: main branch is not up to date with origin/main.'),
-    );
+    console.error(red('Main branch is not up to date with origin/main.'));
     process.exit(1);
   }
 

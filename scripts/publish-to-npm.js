@@ -7,17 +7,24 @@
  */
 
 // publish-and-tag.js
-import { runCommand } from './functions/run-command';
+import { green, red } from './functions/colors.js';
+import { isCleanRepo } from './functions/is-clean-repo.js';
+import { runCommand } from './functions/run-command.js';
 
 (async () => {
   try {
-    console.log('📦 Publishing package...');
+    if (!isCleanRepo()) {
+      console.error(red('Branch must be a clean main branch.'));
+      process.exit(1);
+    }
+
+    console.log(gray('📦 Publishing package...'));
     runCommand('npm publish --access public');
-    console.log('✅ Publish successful. Adding version tag...');
+    console.log(green('✅ Publish successful. Adding version tag...'));
     runCommand('node scripts/add-version-tag.js');
-    console.log('🏷️ Version tag added.');
+    console.log(green('🏷️ Version tag added.'));
   } catch (e) {
-    console.error('❌ Operation failed:', e.error?.message || e);
+    console.error(red('Operation failed: ' + e.error?.message || e));
     process.exit(1);
   }
 })();
