@@ -34,13 +34,12 @@ git pull
 
 In the _whole document_, replace the following things:
 
-- `add-update-doc-and-scripts-js` by the name of your new branch
-- `Add update-doc-and-scripts.js` by your new pull request title
+- `Add create-branch-script.js` by your new pull request title
 
 ## Create a feature branch
 
 ```bash
-git checkout -b add-update-doc-and-scripts-js
+node scripts/create-branch.js "Add create branch-script.js"
 ```
 
 ## Update dependencies
@@ -64,7 +63,7 @@ If you have only one change, run
 
 ```bash
 git add .
-git commit -am"Add update-doc-and-scripts.js"
+git commit -am"Add create-branch-script.js"
 ```
 
 ## Increase version
@@ -89,8 +88,8 @@ git rebase main
 ## Create a pull request
 
 ```bash
-git push -u origin add-update-doc-and-scripts-js
-gh pr create --base main --title "Add update-doc-and-scripts.js" --body " "
+node scripts/push-branch.js
+gh pr create --base main --title "Add create-branch-script.js" --body " "
 gh pr merge --auto --squash
 ```
 
