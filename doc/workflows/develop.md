@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Update create-new-repo.md` here and below
+Replace `Update create-new-repo.md: Add package.json edit hints` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Update create-new-repo.md"
+node scripts/create-branch.js "Update create-new-repo.md: Add package.json edit hints"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Update create-new-repo.md"
+git commit -am"Update create-new-repo.md: Add package.json edit hints"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Update create-new-repo.md" --body " "
+gh pr create --base main --title "Update create-new-repo.md: Add package.json edit hints" --body " "
 ```
 
 ## Code review

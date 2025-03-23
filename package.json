@@ -1,7 +1,7 @@
 {
   "name": "@rljson/template-project",
   "version": "0.0.13",
-  "description": "Rljson template-project",
+  "description": "Rljson template-project description",
   "homepage": "https://github.com/rljson/template-project",
   "bugs": "https://github.com/rljson/template-project/issues",
   "private": false,
