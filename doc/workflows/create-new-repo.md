@@ -17,14 +17,18 @@ found in the LICENSE file in the root of this package.
 - [Checkout and open the new project](#checkout-and-open-the-new-project)
 - [Rename template-project into my-new-repo](#rename-template-project-into-my-new-repo)
   - [Call rename script](#call-rename-script)
-- [Update goldens](#update-goldens)
+- [Edit package.json](#edit-packagejson)
 - [Commit the initial state](#commit-the-initial-state)
   - [Create and complete pull request](#create-and-complete-pull-request)
   - [Delete feature branch](#delete-feature-branch)
 
 ## Replace in this doc
 
+In the _whole_ file:
+
 Replace `my-new-repo` by the name of your new repo
+
+Replace `Rljson template-project description` by a short project description
 
 ## Create repo
 
@@ -40,7 +44,7 @@ Select the template repository `@rljson/template-project`
 
 Enter a `my-new-repo` as `name`
 
-Enter a title for the repo
+Into the `Title` field, paste `Rljson template-project description`
 
 Create the repo as used
 
@@ -144,6 +148,14 @@ git checkout -b rename-classes
 ```bash
 node scripts/rename-class.js template-project my-new-repo
 ```
+
+## Edit package.json
+
+Open `package.json` and add the following changes:
+
+Reset version to `0.0.1`
+
+Set description to `Rljson template-project description`
 
 ## Commit the initial state
 
