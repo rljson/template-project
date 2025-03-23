@@ -26,8 +26,6 @@ found in the LICENSE file in the root of this package.
 
 Replace `my-new-repo` by the name of your new repo
 
-Replace `MyNewRepo` by the upper camelcase name of you main class
-
 ## Create repo
 
 Open <https://github.com/rljson>
@@ -73,13 +71,19 @@ Check the following settings:
 - [x] `Restrict deletions`
 - [x] `Require linear history`
 - [x] `Require a pull request before merging`
-  - Click on the dropdown below `Required approvals`
-    - Select `1`
-    - Check the following boxes:
-      - [ ] `Dismiss stale pull request approvals when new commits are pushed`
-      - [ ] `Require review from code owners`
-      - [x] `Require approval of the most recent reviewable push`
-      - [x] `Require conversation resolution before merging`
+  - You want to require a code review before merging?
+    - No
+      - Keep the default settings
+        - Set `Required Approvals` to 0
+        - Don't check any off the boxes
+    - Yes
+      - Click on the dropdown below `Required approvals`
+        - Select `1` for `Required Approvals`
+        - Check the following boxes:
+          - [ ] `Dismiss stale pull request approvals when new commits are pushed`
+          - [ ] `Require review from code owners`
+          - [x] `Require approval of the most recent reviewable push`
+          - [x] `Require conversation resolution before merging`
   - Click on `Allowed merge methods:`
     - Only select `Squash`
 - [x] `Require status checks to pass`
@@ -141,12 +145,6 @@ git checkout -b rename-classes
 node scripts/rename-class.js template-project my-new-repo
 ```
 
-## Update goldens
-
-```bash
-pnpm updateGoldens
-```
-
 ## Commit the initial state
 
 ```bash
@@ -157,7 +155,7 @@ git commit -am "Rename template-project into my-new-repo"
 ### Create and complete pull request
 
 ```bash
-git push -u origin my-new-repo
+node scripts/push-branch.js
 gh pr create --base main --title "Rename template-project into my-new-repo" --body " "
 gh pr merge --auto --squash
 node ./scripts/wait-for-pr.js
@@ -166,10 +164,5 @@ node ./scripts/wait-for-pr.js
 ### Delete feature branch
 
 ```bash
-git fetch
-git checkout main
-git reset --soft origin/main
-git stash -m"PR Aftermath"
-git pull
-git branch -d rename-classes
+node scripts/delete-feature-branch.js
 ```
