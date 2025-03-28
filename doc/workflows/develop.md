@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add copy-file.js ` here and below
+Replace `Remove wrong info from launch.json ` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add copy-file.js "
+node scripts/create-branch.js "Remove wrong info from launch.json "
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add copy-file.js "
+git commit -am"Remove wrong info from launch.json "
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Add copy-file.js " --body " "
+gh pr create --base main --title "Remove wrong info from launch.json " --body " "
 ```
 
 ## Code review
