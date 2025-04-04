@@ -33,7 +33,7 @@ git pull
 
 ## Set pull request title
 
-Replace `Remove wrong info from launch.json ` here and below
+Replace `Remove wrong info from launch.json` here and below
 by your new pull request title.
 
 ## Create a feature branch
