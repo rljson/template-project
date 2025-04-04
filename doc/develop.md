@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Remove wrong info from launch.json` here and below
+Replace `Fix clone all repos on windows` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Remove wrong info from launch.json "
+node scripts/create-branch.js "Fix clone all repos on windows "
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Remove wrong info from launch.json "
+git commit -am"Fix clone all repos on windows "
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Remove wrong info from launch.json " --body " "
+gh pr create --base main --title "Fix clone all repos on windows " --body " "
 ```
 
 ## Code review
