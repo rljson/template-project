@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Add directories.js and sync-folders.js` here and below
+Replace `Update directories.js and goldens.ts` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Add directories.js and sync-folders.js "
+node scripts/create-branch.js "Update directories.js and goldens.ts "
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Add directories.js and sync-folders.js "
+git commit -am"Update directories.js and goldens.ts "
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Add directories.js and sync-folders.js " --body " "
+gh pr create --base main --title "Update directories.js and goldens.ts " --body " "
 ```
 
 ## Code review
