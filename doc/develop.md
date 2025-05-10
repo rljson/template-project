@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Fix clone all repos on windows` here and below
+Replace `Add directories.js and sync-folders.js` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Fix clone all repos on windows "
+node scripts/create-branch.js "Add directories.js and sync-folders.js "
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Fix clone all repos on windows "
+git commit -am"Add directories.js and sync-folders.js "
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Fix clone all repos on windows " --body " "
+gh pr create --base main --title "Add directories.js and sync-folders.js " --body " "
 ```
 
 ## Code review
