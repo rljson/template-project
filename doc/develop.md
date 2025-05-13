@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Update directories.js and goldens.ts` here and below
+Replace `Compare goldens based on json and not strings` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Update directories.js and goldens.ts "
+node scripts/create-branch.js "Compare goldens based on json and not strings "
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Update directories.js and goldens.ts "
+git commit -am"Compare goldens based on json and not strings "
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Update directories.js and goldens.ts " --body " "
+gh pr create --base main --title "Compare goldens based on json and not strings " --body " "
 ```
 
 ## Code review
