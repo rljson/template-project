@@ -6,14 +6,6 @@
  * found in the LICENSE file in the root of this package.
  */
 
-/*
- * @license
- * Copyright (c) 2025 Rljson
- *
- * Use of this source code is governed by terms that can be
- * found in the LICENSE file in the root of this package.
- */
-
 import { existsSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
 import { chdir } from 'process';
@@ -33,7 +25,15 @@ if (!existsSync(DEST_DIR)) {
 }
 chdir(DEST_DIR);
 
-const repos = await getRepoUrls();
+var repos;
+try {
+  repos = await getRepoUrls();
+} catch (e) {
+  console.error(
+    [red(`Error while getting repo URLs.`), e.message.trim()].join('\n'),
+  );
+  process.exit(1);
+}
 
 if (repos.length === 0) {
   console.log('No repositories found.');

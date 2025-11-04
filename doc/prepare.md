@@ -16,8 +16,7 @@ found in the LICENSE file in the root of this package.
 - [Get access To GitHub](#get-access-to-github)
   - [Get a GitHub account](#get-a-github-account)
   - [Request organization access](#request-organization-access)
-  - [Upload your public SSH key](#upload-your-public-ssh-key)
-  - [Login with GitHub CLI](#login-with-github-cli)
+  - [Login with GitHub CLI \& Upload SSH Key](#login-with-github-cli--upload-ssh-key)
 - [Get access to NPM](#get-access-to-npm)
   - [Create an account on NPM](#create-an-account-on-npm)
   - [Request access to Rljson](#request-access-to-rljson)
@@ -73,6 +72,18 @@ Visit <https://code.visualstudio.com/download>
 
 Download and install
 
+### WSL and Ubuntu
+
+Read [install-wsl-and-ubuntu.md](install-wsl-and-ubuntu.md)
+
+### Docker Engine
+
+Read [install-docker.md](install-docker.md)
+
+### SQL Server
+
+Read [install-sql-server.md](install-sql-server.md)
+
 ## Get access To GitHub
 
 ### Get a GitHub account
@@ -114,9 +125,7 @@ the Rljson GitHub organization by performing the following steps:
 
 7. Assign the right role (member, outside contributor etc) to the new user
 
-### Upload your public SSH key
-
-### Login with GitHub CLI
+### Login with GitHub CLI & Upload SSH Key
 
 We have installed the GitHub CLI before
 

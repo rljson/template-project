@@ -9,6 +9,7 @@
 // Import Node.js built-in module for working with child processes
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { green, yellow } from './colors.js';
 
 // Convert exec to return a Promise for async/await usage
 const execAsync = promisify(exec);
@@ -29,6 +30,14 @@ export async function getRepoUrls() {
     // Map to name + URL and print to console
     return repos.map((repo) => repo.url);
   } catch (error) {
-    console.error('Error fetching repositories:', error.message);
+    if (error.message.match('gh auth login').length == 1) {
+      throw Error(
+        [yellow('Not yet logged in. Please run:'), green('gh auth login')].join(
+          '\n',
+        ),
+      );
+    }
+
+    throw error;
   }
 }
