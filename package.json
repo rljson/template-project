@@ -22,8 +22,8 @@
   "scripts": {
     "build": "pnpm test && pnpm vite build && tsc && node scripts/copy-readme-to-dist.js",
     "test": "pnpm vitest run --coverage && pnpm run lint",
-    "prebuild": "npm test",
-    "prepublishOnly": "npm build",
+    "prebuild": "pnpm test",
+    "prepublishOnly": "pnpm build",
     "lint": "pnpm eslint",
     "updateGoldens": "cross-env UPDATE_GOLDENS=true pnpm test"
   },
