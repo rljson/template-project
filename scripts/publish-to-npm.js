@@ -24,7 +24,13 @@ import { runCommand } from './functions/run-command.js';
     runCommand('node scripts/add-version-tag.js');
     console.log(green('🏷️ Version tag added.'));
   } catch (e) {
-    console.error(red('Operation failed: ' + e.error?.message || e));
+    console.error(red('Operation failed: ' + (e.message || e)));
+    if (e.stdout) {
+      console.error(red(e.stdout.toString()));
+    }
+    if (e.stderr) {
+      console.error(red(e.stderr.toString()));
+    }
     process.exit(1);
   }
 })();
