@@ -9,12 +9,12 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [dts({ include: ['src/**/*'] })],
+  plugins: [dts({ entryRoot: 'src', include: ['src/**/*'] })],
 
   build: {
     copyPublicDir: false,
     minify: false,
-    // sourcemap: 'inline',
+    sourcemap: true,
 
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
