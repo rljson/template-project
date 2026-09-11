@@ -11,9 +11,6 @@ import { defineConfig } from 'vite';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    // Honor the paths of tsconfig.json: in a gg ticket they map the sibling
-    // repos to their sources, so a test steps into their TypeScript.
-    resolve: { tsconfigPaths: true },
     test: {
       globals: true,
       environment: 'node',

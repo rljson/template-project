@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.workspace.json",
   "compilerOptions": {
     "target": "ES2021",
     "useDefineForClassFields": true,
@@ -8,10 +7,7 @@
     "skipLibCheck": true,
 
     /* Distribution */
-    /* The sibling repos of a gg ticket join the program through the paths
-       of tsconfig.workspace.json. TypeScript 6 defaults rootDir to the
-       project folder and reports TS6059 for every file outside it. */
-    "rootDir": "../..",
+    "rootDir": "src",
     "outDir": "dist/",
     "declaration": true,
     "noEmitOnError": true,
